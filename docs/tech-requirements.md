@@ -26,20 +26,28 @@ User must have:
 - email
 - username
 
+Can reset all stats
+
 
 ## 2.2. Typing test
 
-
+Run test with mod in settings. Next test start on pressing 'tab' key.
+Monkeytype = good example
 
 
 ## 2.3. Test stats
 
-
+Count:
+- WPM
+- Accuracity
+- Time/words
+- WPM map
+- errors
 
 
 ## 2.4. Settings
 
-Must be able to import/export settings from/to json.
+Must be able to import/export settings from/to json. Reset settings.
 
 ### Test
 
@@ -53,8 +61,11 @@ Must be able to import/export settings from/to json.
 ### Enviroment
 
 - sound to key press (get from mechvibes)
-- show timer
-- show current wpm
+- live:
+  - wpm
+  - accuracy
+  - timer/progress
+- ads: off, result, ...
 - show all lines
 - font:
   - size: 1 1.25 1.5 ...
@@ -66,7 +77,10 @@ Must be able to import/export settings from/to json.
   - static (just show layout)
 - theme:
   - background
-    - 
+  - primary (color of right text)
+  - secondary (color of untyped text)
+  - danger (color of wrong text)
+
 
 ## 2.5. Layout analyzis
 
