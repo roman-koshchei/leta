@@ -17,6 +17,7 @@ Functional blocks:
 5. Layout creator
 6. Layout downloader
 7. Guides
+8. PWA or Desktop
 
 
 ## 2.1. Auth
@@ -108,7 +109,10 @@ Both mods can:
 
 ## 2.6. Layout downloader
 
-Send reguest to server and recieve file. Server create files by passing keys. Database entity doesn't contain files (text) for platforms. Files are created on each request.
+Send reguest to server and recieve file. Database entity doesn't contain files (text) for platforms. Files are created on each request.
+Files will be created on client side. I think it's better, because:
+- pwa will support downloading
+- no waiting to transport file from server to client
 
 
 ## 2.7. Guides
@@ -119,6 +123,13 @@ Try to contain guides like seperate files (.md)
 - for layout creators
 
 Maybe to connect it to one guide and add navigation
+
+
+## 2.8. PWA or Desktop
+
+Make website installable. Offline available:
+- touch typing tests
+- export layouts (if possible)
 
 
 # 3. Tech stack
