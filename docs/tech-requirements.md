@@ -14,10 +14,9 @@ Functional blocks:
 2. Typing test
 3. Test stats (save in profile)
 4. Settings
-5. Layout analyzis
-6. Layout creator
-7. Layout downloader
-8. Guides
+5. Layout creator
+6. Layout downloader
+7. Guides
 
 
 ## 2.1. Auth
@@ -57,7 +56,6 @@ Must be able to import/export settings from/to json. Reset settings.
   - time: 15 30 60 120
 - layout
 
-
 ### Enviroment
 
 - sound to key press (get from mechvibes)
@@ -82,24 +80,45 @@ Must be able to import/export settings from/to json. Reset settings.
   - danger (color of wrong text)
 
 
-## 2.5. Layout analyzis
+## 2.5. Layout creator
+
+Contains mods (layout model should have mod property):
+1. comparable
+2. freedom
+
+Both mods can:
+- change finger of keys
+- download files for all platforms (`see 2.6. Layout downloader`)
 
 
+### 2.5.1. Comparable 
+
+- english
+- only swap keys
+- get analysis from genkey-api (can see raw json)
 
 
-## 2.6. Layout creator
+### 2.5.2. Freedom
+
+- any language
+- can't get analysis
+- swap keys
+- set custom letters
 
 
+## 2.6. Layout downloader
+
+Send reguest to server and recieve file. Server create files by passing keys. Database entity doesn't contain files (text) for platforms. Files are created on each request.
 
 
-## 2.7. Layout downloader
+## 2.7. Guides
 
+Try to contain guides like seperate files (.md)
+- about terminology
+- for choosing right layout
+- for layout creators
 
-
-
-## 2.8. Guides
-
-
+Maybe to connect it to one guide and add navigation
 
 
 # 3. Tech stack
