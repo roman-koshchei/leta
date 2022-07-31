@@ -1,13 +1,16 @@
 # User
 
-|              |             |
-|--------------|-------------|
-| Email        | stirng      |
-| Username     | string      |
-| Slug         | string      |
-| Settings     | ref         |
-| Stats        | ref         |
-| AddedLayouts | list of ref |
+|              |                |
+|--------------|----------------|
+| UUID         | uuid           |
+| Email        | stirng         |
+| Name         | string         |
+| Slug         | string         |
+| Bio          | string         |
+| SocialLinks  | list of string |
+| Settings     | ref            |
+| Stats        | ref            |
+| AddedLayouts | list of ref    |
 
 
 # Settings
