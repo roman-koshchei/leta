@@ -6,9 +6,11 @@
   </p>
 </p>
 
-## Features
 
-- [ ] future feature
+## Feature
+
+You can see current technical requirements [there](./docs/tech-requirements.md)
+
 
 ## Like what you're seeing?
-We're hoping to turn this into our full-time job! Support us by [future support link]()
+We're hoping to turn this into our full-time job! Support us on [open collective](https://opencollective.com/paragoda)
