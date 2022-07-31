@@ -51,7 +51,7 @@ Must be able to import/export settings from/to json. Reset settings.
 
 ### Test
 
-- language level (A, B, C)
+- difficulty (A, B, C)
 - Mod:
   - words: 10 25 50 100
   - time: 15 30 60 120
@@ -83,7 +83,7 @@ Must be able to import/export settings from/to json. Reset settings.
 
 ## 2.5. Layout creator
 
-Contains mods (layout model should have mod property):
+Contains mods (layout model should have mode property):
 1. comparable
 2. freedom
 
