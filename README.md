@@ -7,10 +7,18 @@
 </p>
 
 
-## Feature
+## Steps
 
-You can see current technical requirements [there](./docs/tech-requirements.md)
+- [x] Technical requirements [there](./docs/tech-requirements.md)
+- [ ] Interface prototypes
+- [ ] Design
+- [x] Logo
+- [ ] Database structure
+- [ ] Tech stack definition
+- [ ] Architecture
+- [ ] Functional development
 
-
+ 
 ## Like what you're seeing?
+
 We're hoping to turn this into our full-time job! Support us on [open collective](https://opencollective.com/paragoda)
