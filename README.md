@@ -9,11 +9,11 @@
 
 ## Steps
 
-- [x] Technical requirements [there](./docs/tech-requirements.md)
+- [x] Technical requirements [->](./docs/tech-requirements.md)
 - [ ] Interface prototypes
 - [ ] Design
 - [x] Logo
-- [ ] Database structure
+- [ ] Database structure [->](./docs/db-structure.md)
 - [ ] Tech stack definition
 - [ ] Architecture
 - [ ] Functional development
