@@ -10,7 +10,6 @@
 ## Steps
 
 - [x] Technical requirements [->](./docs/tech-requirements.md)
-- [ ] Interface prototypes
 - [ ] Design [->](https://www.figma.com/file/CIx1UK6ndPDBPQL9wDGQA6/leta-design?node-id=0%3A1)
 - [x] Logo
 - [ ] Database structure [->](./docs/db-structure.md)
