@@ -1,3 +1,5 @@
 declare const Button: () => JSX.Element;
 
-export { Button };
+declare const Keyboard: () => JSX.Element;
+
+export { Button, Keyboard };

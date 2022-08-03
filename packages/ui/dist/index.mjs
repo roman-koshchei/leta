@@ -18,6 +18,65 @@ var Button = () => {
     })
   });
 };
+
+// src/keyboard/Keyboard.tsx
+import { useState } from "react";
+
+// src/keyboard/Key.tsx
+import { jsx as jsx2 } from "react/jsx-runtime";
+var Key = ({ val, onDrop, onDrag }) => {
+  const dragOver = (event) => event.preventDefault();
+  return /* @__PURE__ */ jsx2("div", {
+    className: "aspect-[1/1] pointer-events-none",
+    draggable: true,
+    style: { width: "50px", height: "50px", background: "white", margin: "5px" },
+    onDrop,
+    onDrag,
+    onDragOver: dragOver,
+    children: val
+  });
+};
+
+// src/keyboard/Keyboard.tsx
+import { jsx as jsx3 } from "react/jsx-runtime";
+var Keyboard = () => {
+  const [keys, setKeys] = useState([
+    ["w", "l", "y", "p", "k", "z", "x", "o", "u", ";", "[", "]", "\\"],
+    ["c", "r", "s", "t", "b", "f", "n", "e", "i", "a", "'"],
+    ["j", "v", "d", "g", "q", "m", "h", "/", ",", "."]
+  ]);
+  const [draged, setDraged] = useState({
+    row: -1,
+    col: -1
+  });
+  const dragOver = (event) => {
+    event.preventDefault();
+  };
+  const drag = (rowIndex, colIndex) => {
+    setDraged({ row: rowIndex, col: colIndex });
+  };
+  const drop = (rowIndex, colIndex) => {
+    const dragedKey = keys[draged.row][draged.col];
+    let newKeys = Array.from(keys);
+    newKeys[draged.row][draged.col] = keys[rowIndex][colIndex];
+    newKeys[rowIndex][colIndex] = dragedKey;
+    setKeys(newKeys);
+  };
+  return /* @__PURE__ */ jsx3("div", {
+    className: "aspect-[16/9]",
+    children: keys.map((row, rowIndex) => /* @__PURE__ */ jsx3("div", {
+      className: "flex",
+      children: row.map(
+        (key, colIndex) => /* @__PURE__ */ jsx3(Key, {
+          val: key,
+          onDrag: () => drag(rowIndex, colIndex),
+          onDrop: () => drop(rowIndex, colIndex)
+        })
+      )
+    }))
+  });
+};
 export {
-  Button
+  Button,
+  Keyboard
 };

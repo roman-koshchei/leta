@@ -1,0 +1,17 @@
+```
+/auth
+  /signin
+  /signup
+/layouts
+  /comparable
+    /[slug]
+  /freedom
+    /[slug]
+/create
+  /comparable
+  /freedom
+/guide
+/typing
+/account
+  /settings
+```
