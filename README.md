@@ -10,7 +10,7 @@
 
 You will be able to:
 - Practice touch typing
-- Pick best keyboard lwyout for yourself
+- Pick best keyboard layout for yourself
 - Create own keyboard layout with analysis
 - Download layout files for any OS
 
