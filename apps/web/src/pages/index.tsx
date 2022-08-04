@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Button } from "ui";
+import { Hand } from "models"
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         <h1 className="mx-auto max-w-5xl text-center text-6xl font-extrabold leading-[1.1] tracking-tighter text-white sm:text-7xl lg:text-8xl xl:text-8xl">
           Web <br className="hidden lg:block" />
           <span className="inline-block bg-gradient-to-r from-brandred to-brandblue bg-clip-text text-transparent">
-            Turborepo Example
+            {Hand.Left}
           </span>{" "}
         </h1>
         <div className="mx-auto mt-5 max-w-xl sm:flex sm:justify-center md:mt-8">
