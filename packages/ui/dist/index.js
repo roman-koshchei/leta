@@ -20,7 +20,8 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.tsx
 var src_exports = {};
 __export(src_exports, {
-  Button: () => Button
+  Button: () => Button,
+  Keyboard: () => Keyboard
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -45,7 +46,60 @@ var Button = () => {
     })
   });
 };
+
+// src/keyboard/Keyboard.tsx
+var import_react = require("react");
+
+// src/keyboard/Key.tsx
+var import_jsx_runtime = require("react/jsx-runtime");
+var Key = ({ keyInfo, onDrag, onDrop }) => {
+  const dragOver = (e) => e.preventDefault();
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+    draggable: true,
+    className: "m-1",
+    onDragOver: dragOver,
+    onDrag,
+    onDrop,
+    children: [
+      keyInfo.shift,
+      keyInfo.primary
+    ]
+  });
+};
+
+// src/keyboard/Keyboard.tsx
+var import_jsx_runtime = require("react/jsx-runtime");
+var Keyboard = ({ setKeys, keys, fingers }) => {
+  const [draged, setDraged] = (0, import_react.useState)({
+    row: -1,
+    col: -1
+  });
+  const drag = (row, col) => setDraged({ row, col });
+  const drop = (row, col) => {
+    const dragedKey = keys[draged.row][draged.col];
+    let newKeys = Array.from(keys);
+    newKeys[draged.row][draged.col] = keys[row][col];
+    newKeys[row][col] = dragedKey;
+    setKeys(newKeys);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+    className: "aspect-[16/9]",
+    children: keys.map(
+      (row, rowIndex) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+        className: "flex",
+        children: row.map(
+          (keyInfo, colIndex) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Key, {
+            keyInfo,
+            onDrop: () => drop(rowIndex, colIndex),
+            onDrag: () => drag(rowIndex, colIndex)
+          })
+        )
+      })
+    )
+  });
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Button
+  Button,
+  Keyboard
 });
