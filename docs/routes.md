@@ -3,15 +3,18 @@
   /signin
   /signup
 /layouts
+  /index
   /comparable
     /[slug]
-  /freedom
+  /flexible
     /[slug]
 /create
+  /index
   /comparable
-  /freedom
+  /flexible
 /guide
 /typing
 /account
+  /index
   /settings
 ```

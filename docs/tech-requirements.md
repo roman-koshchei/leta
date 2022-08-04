@@ -85,7 +85,7 @@ Must be able to import/export settings from/to json. Reset settings.
 
 Contains mods (layout model should have mode property):
 1. comparable
-2. freedom
+2. flexible
 
 Both mods can:
 - change finger of keys
