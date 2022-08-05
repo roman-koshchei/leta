@@ -28,4 +28,4 @@ You will be able to:
  
 ## Like what you're seeing?
 
-We're hoping to turn this into our full-time job! Support us on [open collective](https://opencollective.com/paragoda)
+We're hoping to turn this into our full-time job! Support us on [Open Collective](https://opencollective.com/paragoda)
