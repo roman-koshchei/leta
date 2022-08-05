@@ -11,4 +11,4 @@ Backend:
 - [Genkey api](https://github.com/roman-koshchei/genkey-api)
 
 Other:
-- [Turborepo](https://turborepo.org/docs/getting-started) for possible future desktop
+- [Turborepo](https://turborepo.org/docs/getting-started)
