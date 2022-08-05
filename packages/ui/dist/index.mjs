@@ -1,22 +1,9 @@
-// src/Button.tsx
-import { Hand } from "models";
-import { jsx, jsxs } from "react/jsx-runtime";
-var Button = () => {
+// src/common/Button.tsx
+import { jsx } from "react/jsx-runtime";
+var Button = ({ text }) => {
   return /* @__PURE__ */ jsx("div", {
-    className: "rounded-md ",
-    children: /* @__PURE__ */ jsx("a", {
-      href: "https://turborepo.org/docs/getting-started",
-      children: /* @__PURE__ */ jsxs("div", {
-        className: "flex w-full items-center justify-center rounded-md border border-transparent bg-black px-8 py-3 text-base font-medium text-white no-underline hover:bg-gray-700 dark:bg-white dark:text-black dark:hover:bg-gray-300 md:py-3 md:px-10 md:text-lg md:leading-6",
-        children: [
-          Hand.Left,
-          /* @__PURE__ */ jsx("span", {
-            className: "ml-2 bg-gradient-to-r from-brandred to-brandblue bg-clip-text text-transparent",
-            children: "\u2192"
-          })
-        ]
-      })
-    })
+    className: "rounded-md bg-slate-400 p-3",
+    children: text
   });
 };
 
@@ -24,10 +11,10 @@ var Button = () => {
 import { useState } from "react";
 
 // src/keyboard/Key.tsx
-import { jsxs as jsxs2 } from "react/jsx-runtime";
+import { jsxs } from "react/jsx-runtime";
 var Key = ({ keyInfo, onDrag, onDrop }) => {
   const dragOver = (e) => e.preventDefault();
-  return /* @__PURE__ */ jsxs2("div", {
+  return /* @__PURE__ */ jsxs("div", {
     draggable: true,
     className: "m-1",
     onDragOver: dragOver,

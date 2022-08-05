@@ -3,7 +3,13 @@ import "../styles/globals.css";
 import "ui/styles.css";
 
 import type { AppProps } from "next/app";
+import { Navbar } from "../components/navigation/Navbar";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <div>
+      <Navbar />
+      <Component {...pageProps} />
+    </div>
+  )
 }

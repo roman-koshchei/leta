@@ -1,7 +1,10 @@
 import { KeyInfo, FingerPosition } from 'models';
 import { Dispatch, SetStateAction } from 'react';
 
-declare const Button: () => JSX.Element;
+interface ButtonProps {
+    text: string;
+}
+declare const Button: ({ text }: ButtonProps) => JSX.Element;
 
 interface KeyboardProps {
     keys: KeyInfo[][];

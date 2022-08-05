@@ -25,25 +25,12 @@ __export(src_exports, {
 });
 module.exports = __toCommonJS(src_exports);
 
-// src/Button.tsx
-var import_models = require("models");
+// src/common/Button.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
-var Button = () => {
+var Button = ({ text }) => {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-    className: "rounded-md ",
-    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-      href: "https://turborepo.org/docs/getting-started",
-      children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-        className: "flex w-full items-center justify-center rounded-md border border-transparent bg-black px-8 py-3 text-base font-medium text-white no-underline hover:bg-gray-700 dark:bg-white dark:text-black dark:hover:bg-gray-300 md:py-3 md:px-10 md:text-lg md:leading-6",
-        children: [
-          import_models.Hand.Left,
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-            className: "ml-2 bg-gradient-to-r from-brandred to-brandblue bg-clip-text text-transparent",
-            children: "\u2192"
-          })
-        ]
-      })
-    })
+    className: "rounded-md bg-slate-400 p-3",
+    children: text
   });
 };
 

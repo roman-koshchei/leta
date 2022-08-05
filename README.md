@@ -21,7 +21,7 @@ You will be able to:
 - [ ] Design [->](https://www.figma.com/file/CIx1UK6ndPDBPQL9wDGQA6/leta-design?node-id=0%3A1)
 - [x] Logo
 - [ ] Database structure [->](./docs/db-structure.md)
-- [ ] Tech stack definition
+- [x] Tech stack definition [->](./docs/tech-stack.md)
 - [ ] Architecture
 - [ ] Functional development
 
