@@ -1,7 +1,10 @@
+import Link from "next/link"
+
 const CreatePage = () => {
   return (
     <div>
-      CreatePage: descripe create options (comparable and freedom)
+      <Link href="/create/comparable">Comparable</Link>
+      <Link href="/create/flexible">Flexible</Link>
     </div>
   )
 }

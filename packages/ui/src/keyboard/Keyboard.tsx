@@ -1,6 +1,8 @@
 import { FingerPosition, KeyInfo } from "models"
 import { Dispatch, SetStateAction, useState } from "react"
+import { DragKey } from "./DragKey"
 import { Key } from "./Key"
+import { KeyBase } from "./KeyBase"
 
 interface KeyboardProps {
   keys: KeyInfo[][]
@@ -28,16 +30,32 @@ const Keyboard = ({ setKeys, keys, fingers }: KeyboardProps) => {
   }
 
   return (
-    <div className="aspect-[16/9]">
-      {keys.map((row, rowIndex) =>
-        <div className="flex">
-          {row.map((keyInfo, colIndex) =>
-            <Key keyInfo={keyInfo}
-              onDrop={() => drop(rowIndex, colIndex)}
-              onDrag={() => drag(rowIndex, colIndex)} />
+    <div className="aspect-[1200/220] max-w-5xl text-sm md:text-base">
+      <div className="flex flex-col gap-1 md:gap-2 h-full">
+
+        <div className="flex flex-1 gap-1 md:gap-2">
+          <KeyBase w={24} color="slate-300">Tab</KeyBase>
+          {keys[0].map((key, i) =>
+            <DragKey onDrag={() => drag(0, i)} onDrop={() => drop(0, i)} keyInfo={key} w={i == keys[0].length - 1 ? 24 : 14} />
           )}
         </div>
-      )}
+
+        <div className="flex flex-1 gap-1 md:gap-2">
+          <KeyBase w={28} color="slate-300">Caps</KeyBase>
+          {keys[1].map((key, i) =>
+            <DragKey onDrag={() => drag(1, i)} onDrop={() => drop(1, i)} keyInfo={key} w={14} />
+          )}
+          <KeyBase w={36} color="slate-300">Enter</KeyBase>
+        </div>
+
+        <div className="flex  flex-1 gap-1 md:gap-2">
+          <KeyBase w={36} color="slate-300">Shift</KeyBase>
+          {keys[2].map((key, i) =>
+            <DragKey onDrag={() => drag(2, i)} onDrop={() => drop(2, i)} keyInfo={key} w={14} />
+          )}
+          <KeyBase w={44} color="slate-300">Shift</KeyBase>
+        </div>
+      </div>
     </div>
   )
 }

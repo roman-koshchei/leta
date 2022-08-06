@@ -1,10 +1,9 @@
+import { FC, Dispatch, SetStateAction } from 'react';
 import { KeyInfo, FingerPosition } from 'models';
-import { Dispatch, SetStateAction } from 'react';
 
 interface ButtonProps {
-    text: string;
 }
-declare const Button: ({ text }: ButtonProps) => JSX.Element;
+declare const Button: FC<ButtonProps>;
 
 interface KeyboardProps {
     keys: KeyInfo[][];

@@ -1,7 +1,7 @@
 
 enum Hand {
-  Left = 1,
-  Right = 2
+  Left,
+  Right
 }
 
 enum Finger {

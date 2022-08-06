@@ -1,26 +1,34 @@
 import { KeyInfo } from "models"
-import { DragEventHandler } from "react"
+import { DragEventHandler, FC } from "react"
+import { KeyBase } from "./KeyBase"
 
 interface KeyProps {
   keyInfo: KeyInfo
-  onDrop: DragEventHandler
-  onDrag: DragEventHandler
+  w: number // tailwind width numbler as 'w-14'
+
+  [x: string]: any;
 }
 
-const Key = ({ keyInfo, onDrag, onDrop }: KeyProps) => {
+const FullInfo = ({ keyInfo }: { keyInfo: KeyInfo }) => {
+  return (
+    <div className="relative h-full w-full">
+      <div className="absolute left-[45%] top-[20%] leading-none text-base md:text-lg">{keyInfo.primary}</div>
+      <div className=" absolute left-0 top-0 text-xs md:text-sm leading-none">{keyInfo.shift}</div>
+    </div >
+  )
+}
 
-  const dragOver = (e: any) => e.preventDefault()
+const Key = ({ keyInfo, w, ...rest }: KeyProps) => {
+
 
   return (
-    <div draggable={true}
-      className="m-1"
-      onDragOver={dragOver}
-      onDrag={onDrag}
-      onDrop={onDrop}
-    >
-      {keyInfo.shift}
-      {keyInfo.primary}
-    </div>
+    <KeyBase w={w} color="green-300" {...rest}>
+      {
+        keyInfo.primary == keyInfo.shift.toLowerCase()
+          ? <span>{keyInfo.shift}</span>
+          : <FullInfo keyInfo={keyInfo} />
+      }
+    </KeyBase>
   )
 }
 
