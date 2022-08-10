@@ -1,7 +1,12 @@
 const TypingPage = () => {
+
+
   return (
     <div>
-      TypingPage
+
+      <div>
+
+      </div>
     </div>
   )
 }

@@ -21,36 +21,41 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
+  DragKeyboard: () => DragKeyboard,
+  Input: () => Input,
   Keyboard: () => Keyboard
 });
 module.exports = __toCommonJS(src_exports);
 
-// src/common/Button.tsx
+// src/keyboard/KeyboardBase.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
-var Button = ({ children }) => {
+var KeyboardBase = ({ children }) => {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-    className: "rounded-md bg-blue-400 text-white px-3 py-1",
-    children
-  });
-};
-
-// src/keyboard/Keyboard.tsx
-var import_react = require("react");
-
-// src/keyboard/KeyBase.tsx
-var import_jsx_runtime = require("react/jsx-runtime");
-var KeyBase = ({ children, w, color, cursor = "default", ...rest }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-    className: `flex-auto rounded-md p-0.5 md:p-1 w-${w} bg-${color} cursor-${cursor}`,
-    ...rest,
+    className: `aspect-[1200/300] text-sm md:text-base`,
     children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-      className: "flex h-full justify-center items-center",
+      className: "flex flex-col gap-1 md:gap-2 h-full",
       children
     })
   });
 };
 
-// src/keyboard/Key.tsx
+// src/keyboard/keys/Key.tsx
+var import_models = require("models");
+
+// src/keyboard/keys/KeyBase.tsx
+var import_jsx_runtime = require("react/jsx-runtime");
+var KeyBase = ({ children, w, bg, cursor = "cursor-default", ...rest }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+    className: `flex-auto rounded-md p-0.5 md:p-1 ${w} ${bg} ${cursor}`,
+    ...rest,
+    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+      className: "flex h-full justify-center items-center select-none",
+      children
+    })
+  });
+};
+
+// src/keyboard/keys/Key.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
 var FullInfo = ({ keyInfo }) => {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -67,124 +72,194 @@ var FullInfo = ({ keyInfo }) => {
     ]
   });
 };
-var Key = ({ keyInfo, w, ...rest }) => {
+var Key = ({ keyInfo, w, onClick, onDrag, onDragOver, onDrop, draggable, ...rest }) => {
+  const bgColor = keyInfo.active ? import_models.FingerColors.get(keyInfo.finger) : "bg-slate-300";
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
     w,
-    color: "green-300",
+    bg: bgColor ?? "",
+    onDrag,
+    onDrop,
+    onDragOver,
+    onClick,
+    draggable,
     ...rest,
-    children: keyInfo.primary == keyInfo.shift.toLowerCase() ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-      children: keyInfo.shift
-    }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FullInfo, {
+    children: keyInfo.primary == keyInfo.shift.toLowerCase() ? keyInfo.shift : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FullInfo, {
       keyInfo
     })
   });
 };
 
-// src/keyboard/DragKey.tsx
+// src/keyboard/rows/Row.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
-var DragKey = ({ keyInfo, onDrag, onDrop, w }) => {
-  const dragOver = (e) => e.preventDefault();
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Key, {
-    w,
-    keyInfo,
-    cursor: "move",
-    draggable: true,
-    onDragOver: dragOver,
-    onDrag,
-    onDrop
+var Row = ({ children }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+    className: "flex flex-1 gap-1 md:gap-2",
+    children
   });
 };
 
 // src/keyboard/Keyboard.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
-var Keyboard = ({ setKeys, keys, fingers }) => {
+var Keyboard = ({ keys, keyDrag: onKeyDrag, keyDrop: onKeyDrop, onKeyDragOver, keyClick }) => {
+  const InKey = onKeyDrag != void 0 && onKeyDrop != void 0 ? ({ keyInfo, w, row, col }) => {
+    return keyInfo.active ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Key, {
+      keyInfo,
+      w,
+      onDrag: () => onKeyDrag(row, col),
+      onDrop: () => onKeyDrop(row, col),
+      draggable: true,
+      onDragOver: onKeyDragOver,
+      onClick: keyClick ? () => keyClick(row, col) : void 0
+    }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Key, {
+      keyInfo,
+      w
+    });
+  } : ({ keyInfo, w }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Key, {
+    keyInfo,
+    w
+  });
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(KeyboardBase, {
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Row, {
+        children: [
+          keys[0].map(
+            (key, col) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(InKey, {
+              col,
+              row: 0,
+              keyInfo: key,
+              w: "w-14"
+            }, col)
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
+            w: "w-32",
+            bg: "bg-slate-300",
+            children: "Backspace"
+          })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Row, {
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
+            w: "w-24",
+            bg: "bg-slate-300",
+            children: "Tab"
+          }),
+          keys[1].map(
+            (key, col) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(InKey, {
+              col,
+              row: 1,
+              keyInfo: key,
+              w: col == keys[0].length - 1 ? "w-24" : "w-14"
+            }, col)
+          )
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Row, {
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
+            w: "w-28",
+            bg: "bg-slate-300",
+            children: "Caps"
+          }),
+          keys[2].map(
+            (key, col) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(InKey, {
+              col,
+              row: 2,
+              keyInfo: key,
+              w: "w-14"
+            }, col)
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
+            w: "w-36",
+            bg: "bg-slate-300",
+            children: "Enter"
+          })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Row, {
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
+            w: "w-36",
+            bg: "bg-slate-300",
+            children: "Shift"
+          }),
+          keys[3].map(
+            (key, col) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(InKey, {
+              col,
+              row: 3,
+              keyInfo: key,
+              w: "w-14"
+            }, col)
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
+            w: "w-44",
+            bg: "bg-slate-300",
+            children: "Shift"
+          })
+        ]
+      })
+    ]
+  });
+};
+
+// src/keyboard/DragKeyboard.tsx
+var import_react = require("react");
+var import_jsx_runtime = require("react/jsx-runtime");
+var DragKeyboard = ({ keys, setKeys, keyClick }) => {
   const [draged, setDraged] = (0, import_react.useState)({
     row: -1,
     col: -1
   });
-  const drag = (row, col) => setDraged({ row, col });
+  const dragOver = (e) => e.preventDefault();
+  const drag = (row, col) => {
+    setDraged({ row, col });
+  };
   const drop = (row, col) => {
     const dragedKey = keys[draged.row][draged.col];
     let newKeys = Array.from(keys);
-    newKeys[draged.row][draged.col] = keys[row][col];
-    newKeys[row][col] = dragedKey;
+    newKeys[draged.row][draged.col] = {
+      ...newKeys[draged.row][draged.col],
+      primary: keys[row][col].primary,
+      shift: keys[row][col].shift
+    };
+    newKeys[row][col] = {
+      ...newKeys[row][col],
+      primary: dragedKey.primary,
+      shift: dragedKey.shift
+    };
     setKeys(newKeys);
   };
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Keyboard, {
+    keys,
+    keyDrag: drag,
+    keyDrop: drop,
+    onKeyDragOver: dragOver,
+    keyClick
+  });
+};
+
+// src/common/Button.tsx
+var import_jsx_runtime = require("react/jsx-runtime");
+var Button = ({ children }) => {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-    className: "aspect-[1200/220] max-w-5xl text-sm md:text-base",
-    children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-      className: "flex flex-col gap-1 md:gap-2 h-full",
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-          className: "flex flex-1 gap-1 md:gap-2",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
-              w: 24,
-              color: "slate-300",
-              children: "Tab"
-            }),
-            keys[0].map(
-              (key, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DragKey, {
-                onDrag: () => drag(0, i),
-                onDrop: () => drop(0, i),
-                keyInfo: key,
-                w: i == keys[0].length - 1 ? 24 : 14
-              })
-            )
-          ]
-        }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-          className: "flex flex-1 gap-1 md:gap-2",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
-              w: 28,
-              color: "slate-300",
-              children: "Caps"
-            }),
-            keys[1].map(
-              (key, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DragKey, {
-                onDrag: () => drag(1, i),
-                onDrop: () => drop(1, i),
-                keyInfo: key,
-                w: 14
-              })
-            ),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
-              w: 36,
-              color: "slate-300",
-              children: "Enter"
-            })
-          ]
-        }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-          className: "flex  flex-1 gap-1 md:gap-2",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
-              w: 36,
-              color: "slate-300",
-              children: "Shift"
-            }),
-            keys[2].map(
-              (key, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DragKey, {
-                onDrag: () => drag(2, i),
-                onDrop: () => drop(2, i),
-                keyInfo: key,
-                w: 14
-              })
-            ),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(KeyBase, {
-              w: 44,
-              color: "slate-300",
-              children: "Shift"
-            })
-          ]
-        })
-      ]
-    })
+    className: "rounded-md bg-blue-400 text-white px-3 py-1 w-fit select-none",
+    children
+  });
+};
+
+// src/common/Input.tsx
+var import_jsx_runtime = require("react/jsx-runtime");
+var Input = ({ val, onChange }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+    className: "bg-gray-100 border outline-none border-gray-100\r\n      text-gray-900 text-sm rounded-md p-2",
+    value: val,
+    onChange
   });
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Button,
+  DragKeyboard,
+  Input,
   Keyboard
 });

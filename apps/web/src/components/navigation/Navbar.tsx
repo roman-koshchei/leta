@@ -8,7 +8,7 @@ const Navbar = () => {
     <div className="flex justify-between m-3">
       <div className="flex gap-3 items-center">
         <Link href="/">
-          <Image width={40} height={40} src="/logo.svg" />
+          <Image width={40} height={40} src="/logo.svg" alt="" />
         </Link>
         <NavLink href="/typing">Typing</NavLink>
         <NavLink href="/layouts">Layouts</NavLink>

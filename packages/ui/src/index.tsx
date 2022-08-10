@@ -1,3 +1,3 @@
-import * as React from "react";
-export * from "./common/Button";
-export * from "./keyboard/Keyboard"
+export * from "./keyboard/Keyboard";
+export * from "./keyboard/DragKeyboard"
+export * from "./common"

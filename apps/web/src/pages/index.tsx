@@ -1,11 +1,12 @@
 import Head from "next/head";
 import { Button } from "ui";
-import { Hand } from "models"
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
         <title>Web - Turborepo Example</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -14,7 +15,7 @@ export default function Home() {
         <h1 className="mx-auto max-w-5xl text-center text-6xl font-extrabold leading-[1.1] tracking-tighter text-white sm:text-7xl lg:text-8xl xl:text-8xl">
           Web <br className="hidden lg:block" />
           <span className="inline-block bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
-            LETA {Hand.Left}
+            LETA
           </span>{" "}
         </h1>
         <div className="mx-auto mt-5 max-w-xl sm:flex sm:justify-center md:mt-8">

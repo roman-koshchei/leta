@@ -1,15 +1,14 @@
-
-enum Hand {
-  Left,
-  Right
-}
-
 enum Finger {
-  Pinky,
-  Ring,
-  Middle,
-  Index,
-  Thumb
+  LeftPinky,
+  LeftRing,
+  LeftMiddle,
+  LeftIndex,
+  LeftThumb,
+  RightPinky,
+  RightRing,
+  RightMiddle,
+  RightIndex,
+  RightThumb
 }
 
-export { Hand, Finger }
+export { Finger }
