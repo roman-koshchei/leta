@@ -25,7 +25,17 @@ You will be able to:
 - [ ] Architecture
 - [ ] Functional development
 
- 
+## Functions
+- [ ] Layout export:
+  - [x] Windows
+  - [ ] Mac
+  - [ ] Linux
+- [ ] Auth
+- [ ] Typing test
+- [ ] Create own layout:
+  - [ ] Comparable
+  - [ ] Flexible
+
 ## Like what you're seeing?
 
 We're hoping to turn this into our full-time job! Support us on [Open Collective](https://opencollective.com/paragoda)
