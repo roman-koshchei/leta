@@ -3,6 +3,7 @@ import { Finger, KeyInfo, QWERTY } from "models"
 import { Fragment, useEffect, useState } from "react"
 import Link from "next/link"
 import { Listbox, Transition } from "@headlessui/react"
+import { download, exportWin, xmodmap } from "utils"
 
 const fingerMaps = ["Traditional", "Alternative"]
 
@@ -42,12 +43,19 @@ const CreateComparablePage = () => {
     // analyze logic
   }
 
+  const downloadClick = () => {
+    const trimName = name.trim()
+    const layoutName = trimName == "" ? "layout" : trimName
+    //download(`${trimName == "" ? "layout" : trimName}.klc`, exportWin(name, keys))
+    download(`${layoutName}.xmodmap`, xmodmap(layoutName, keys))
+
+  }
+
   return (
     <div className="max-w-5xl m-auto mt-10">
       <DragKeyboard keys={keys} setKeys={setKeys} />
 
       <div className="flex justify-between mt-3">
-
 
         <Listbox value={fingerMap} onChange={changeFingerMap}>
           <div className="relative">
@@ -83,6 +91,10 @@ const CreateComparablePage = () => {
 
         <Button>
           <div onClick={analyze}>Analyze</div>
+        </Button>
+
+        <Button>
+          <div onClick={downloadClick}>Download</div>
         </Button>
 
         <Input val={name} onChange={nameChange} />
