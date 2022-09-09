@@ -1,41 +1,54 @@
-<p align="center">
-  <img width="150" src="./docs/assets/logo.png" />
-  <h1 align="center">LETA</h1>
-  <p align="center">
-    Don't waste time looking at what you are typing, spend time thinking about the meaning.
-  </p>
-</p>
+# Turborepo Tailwind CSS starter
 
-## About
+This is an official starter Turborepo.
 
-You will be able to:
-- Practice touch typing
-- Pick best keyboard layout for yourself
-- Create own keyboard layout with analysis
-- Download layout files for any OS
+## What's inside?
 
+This Turborepo includes the following packages/apps:
 
-## Steps
+### Apps and Packages
 
-- [x] Technical requirements [->](./docs/tech-requirements.md)
-- [ ] Design [->](https://www.figma.com/file/CIx1UK6ndPDBPQL9wDGQA6/leta-design?node-id=0%3A1)
-- [x] Logo
-- [ ] Database structure [->](./docs/db-structure.md)
-- [x] Tech stack definition [->](./docs/tech-stack.md)
-- [ ] Architecture
-- [ ] Functional development
+- `docs`: a [Next.js](https://nextjs.org) app with [Tailwind CSS](https://tailwindcss.com/)
+- `web`: another [Next.js](https://nextjs.org) app with [Tailwind CSS](https://tailwindcss.com/)
+- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
+- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
-## Functions
-- [ ] Layout export:
-  - [x] Windows
-  - [ ] Mac
-  - [ ] Linux
-- [ ] Auth
-- [ ] Typing test
-- [ ] Create own layout:
-  - [ ] Comparable
-  - [ ] Flexible
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-## Like what you're seeing?
+### Building packages/ui
 
-We're hoping to turn this into our full-time job! Support us on [Open Collective](https://opencollective.com/paragoda)
+This example is setup to build `packages/ui` and output the transpiled source and compiled styles to `dist/`. This was chosen to make sharing one `tailwind.config.js` as easy as possible, and to ensure only the CSS that is used by the current application and its dependencies is generated.
+
+Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update your `tailwind.config.js` to be aware of your package locations, so it can find all usages of the `tailwindcss` class names.
+
+For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
+
+```js
+  content: [
+    // app content
+    `src/**/*.{js,ts,jsx,tsx}`,
+    // include packages if not transpiling
+    "../../packages/**/*.{js,ts,jsx,tsx}",
+  ],
+```
+
+### Utilities
+
+This Turborepo has some additional tools already setup for you:
+
+- [Tailwind CSS](https://tailwindcss.com/) for styles
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
+
+## Using this example
+
+Run the following command:
+
+```sh
+npx degit vercel/turborepo/examples/with-tailwind with-tailwind
+cd with-tailwind
+yarn install
+git init . && git add . && git commit -m "Init"
+```
