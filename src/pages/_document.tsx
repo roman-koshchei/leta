@@ -11,7 +11,7 @@ class LetaDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html className='scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100'>
         <Head />
         <body>
           <Main />

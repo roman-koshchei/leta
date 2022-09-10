@@ -1,21 +1,27 @@
 {
+  "name": "leta",
+  "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "clean": "turbo run clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.8",
+    "next": "12.3.0",
+    "postcss": "^8.4.16",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "^3.1.8"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
-    "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.11",
-    "turbo": "latest"
+    "@types/node": "18.7.16",
+    "@types/react": "18.0.19",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.23.0",
+    "eslint-config-next": "12.3.0",
+    "typescript": "4.8.3"
   }
 }
