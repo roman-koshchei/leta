@@ -22,8 +22,8 @@ const Layout = ({ children }: LayoutProps) => {
 
 
         {isDarkPrefered
-          ? <link rel='icon' href='/light-icon.ico' />
-          : <link rel='icon' href='/dark-icon.ico' />
+          ? <link rel='icon' href='/img/light-icon.ico' />
+          : <link rel='icon' href='/img/dark-icon.ico' />
         }
       </Head>
 
@@ -33,7 +33,7 @@ const Layout = ({ children }: LayoutProps) => {
 
           <nav>
             <Link href='/'>
-              <Image src={`/${isDarkPrefered ? 'light' : 'dark'}-logo.svg`}
+              <Image src={`/img/${isDarkPrefered ? 'light' : 'dark'}-logo.svg`}
                 width={40} height={40} quality={100} />
             </Link>
 

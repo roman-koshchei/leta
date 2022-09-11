@@ -3,10 +3,21 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Title } from '../components'
 
+/*
+page will work as landing page
+should include:
+- call to action
+- Product tagline
+- Logos of your biggest clients
+- Testimonials
+- Product features
+- Short instructive videos to promote features
+*/
+
 const Home: NextPage = () => {
   return (
     <>
-      <Title>LETA</Title>
+      <Title>LETA - Type faster than ever</Title>
 
       <div className=''>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper, turpis sit amet vehicula ullamcorper, justo arcu volutpat ipsum, a sollicitudin quam enim vel velit. Etiam facilisis nec massa ut consectetur. Aliquam laoreet erat ac orci dapibus, sed cursus velit suscipit. Nam et cursus nulla. Fusce interdum aliquam justo, sit amet congue lacus viverra sit amet. Nulla facilisi. Donec efficitur elementum mauris, ac maximus metus volutpat eleifend. Integer vitae neque massa. Vestibulum sollicitudin aliquet ornare. Suspendisse est nisi, fermentum vitae nibh sed, faucibus efficitur eros. Aliquam aliquam facilisis faucibus. Maecenas commodo euismod massa eu elementum. Curabitur a pharetra tellus, a pretium est. Proin lacinia dictum dictum.
