@@ -1,7 +1,10 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
-import { Title } from '../components'
+import { Key, Title } from '../components'
+// import { supabase } from '../utils/supa'
+import { useUser } from '@supabase/supabase-auth-helpers/react'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 /*
 page will work as landing page
@@ -14,35 +17,104 @@ should include:
 - Short instructive videos to promote features
 */
 
-const Home: NextPage = () => {
+const BlackWhiteKey = ({ className = 'w-16' }: { className?: string }) => {
+  return <Key className={`${className} bg-neutral-900 dark:bg-white`} />
+}
+
+const Home: NextPage<{ dev: any }> = ({ dev }) => {
+
   return (
     <>
       <Title>LETA - Type faster than ever</Title>
 
-      <div className=''>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper, turpis sit amet vehicula ullamcorper, justo arcu volutpat ipsum, a sollicitudin quam enim vel velit. Etiam facilisis nec massa ut consectetur. Aliquam laoreet erat ac orci dapibus, sed cursus velit suscipit. Nam et cursus nulla. Fusce interdum aliquam justo, sit amet congue lacus viverra sit amet. Nulla facilisi. Donec efficitur elementum mauris, ac maximus metus volutpat eleifend. Integer vitae neque massa. Vestibulum sollicitudin aliquet ornare. Suspendisse est nisi, fermentum vitae nibh sed, faucibus efficitur eros. Aliquam aliquam facilisis faucibus. Maecenas commodo euismod massa eu elementum. Curabitur a pharetra tellus, a pretium est. Proin lacinia dictum dictum.
+      <div className='grid grid-cols-1 md:grid-cols-2 h-full'>
 
-        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum non nulla hendrerit, finibus nunc sed, dignissim odio. Aliquam aliquet, felis pretium molestie suscipit, purus risus maximus ipsum, at molestie turpis odio quis leo. Sed sit amet nulla non enim fermentum ornare eget mattis ante. Nulla semper erat at tempor porta. Suspendisse risus lectus, gravida et mi in, pretium malesuada massa. Sed vestibulum, diam fringilla dapibus facilisis, odio nisi ornare nulla, id viverra nisl mauris ac leo. Donec eget arcu semper, tincidunt enim vitae, accumsan lorem. Nulla suscipit, lorem nec tincidunt pretium, metus leo pulvinar massa, nec tincidunt ex ante a nibh. Suspendisse potenti.
+        <div className='self-center'>
+          <h1 className='text-5xl md:text-7xl font-bold mb-5 md:mb-10'>
+            Type faster than ever with LETA
+          </h1>
+          <p className='text-xl md:text-2xl'>
+            Find keyboard layout for you. <br />
+            Try and practice it online. <br />
+            Install on your computer.
+          </p>
+          {/* <p>
+            eleifend fermentum magna, eu feugiat ante sollicitudin eget. Morbi condimentum nec enim sed laoreet. Quisque id elit non tortor ultrices rhoncus sed at sem. Morbi eu orci non dolor venenatis molestie nec et ipsum. Aliquam vel dolor nibh. Praesent vel ante vestibulum, lobortis diam non, eleifend nisl. Aenean a interdum enim. Nullam posuere justo vel lorem placerat, id auctor est vehicula. Donec sit amet quam aliquam, suscipit arcu a, malesuada lorem. Nam commodo interdum lacus ut efficitur. Donec finibus in enim ut porttitor. Nullam sollicitudin sollicitudin condimentum. Fusce hendrerit turpis dui, in cursus arcu viverra ornare.
 
-        Nullam a interdum tortor, et convallis nulla. Pellentesque nec nibh sollicitudin, fermentum purus pellentesque, bibendum leo. Praesent hendrerit, nibh et faucibus congue, enim enim tincidunt neque, a rhoncus leo risus vel est. In malesuada erat a sodales accumsan. Praesent egestas commodo nunc, in volutpat tellus maximus vitae. Maecenas luctus quis ligula eu malesuada. Quisque et dictum lacus. Integer non suscipit tellus, sed tristique ligula. Etiam consectetur efficitur felis id molestie. Curabitur vestibulum eros ut pellentesque maximus. Cras elementum vehicula blandit. Sed facilisis quam in ullamcorper dapibus. Ut a lobortis purus. Sed rutrum risus dolor, vel blandit nibh tempor vel.
+            Pellentesque sed lectus sit amet purus fringilla tincidunt sed quis nisi. Praesent pharetra gravida elit et sodales. Pellentesque in elit non eros laoreet sagittis a in erat. In gravida feugiat ultricies. Aenean accumsan massa non nisi lobortis faucibus. In hac habitasse platea dictumst. Integer pretium odio odio, vestibulum fermentum neque tincidunt vitae. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
 
-        Morbi facilisis nunc ac gravida aliquam. In bibendum quis eros in pellentesque. Suspendisse orci nulla, egestas eget mauris nec, bibendum dictum purus. Praesent in tortor a tellus finibus commodo. In nec ante arcu. Praesent maximus diam sed orci tempor accumsan. Curabitur euismod velit metus, in luctus arcu porta eu. Curabitur imperdiet dolor eget nulla finibus, nec tempor purus lacinia. Curabitur non luctus mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse eleifend quam sapien, vel malesuada orci convallis eleifend. Suspendisse ut gravida lacus, vitae rutrum lorem. Nam elementum mauris vitae iaculis blandit. Praesent arcu ante, malesuada eget massa non, elementum pulvinar erat. Ut sed pulvinar sapien, ac consectetur leo.
+            Morbi vehicula at enim ac placerat. Sed at est rhoncus, commodo lectus tincidunt, posuere mauris. Etiam blandit diam id mi condimentum venenatis. Sed a felis porta, ullamcorper justo vitae, blandit velit. Nulla convallis ornare posuere. Nunc convallis erat eu purus posuere porttitor. Donec finibus facilisis ante ut imperdiet. Nulla congue augue quis quam gravida, sed rutrum sem molestie.
 
-        Morbi eget venenatis felis. Suspendisse potenti. Phasellus vestibulum justo at nunc sollicitudin, et molestie augue euismod. Nulla ornare convallis est eget blandit. Ut vel ex quam. Sed consequat lectus a tempor elementum. Suspendisse lobortis interdum pellentesque. In maximus odio ac elit tempus feugiat. Vestibulum dapibus eu odio ut aliquet. Sed vitae semper magna. Nullam consectetur vehicula leo, sed pellentesque diam imperdiet a. Vivamus bibendum, tortor ut fermentum fringilla, ligula metus suscipit nunc, a convallis magna massa eu sapien. Aenean rutrum faucibus ante id lacinia. Phasellus egestas ipsum ex, ut cursus libero imperdiet vel. Etiam sit amet libero tellus. Vivamus vel viverra nisl.
+            Sed et cursus odio. Donec id ante suscipit, hendrerit ante ut, aliquam magna. Praesent vehicula lacinia aliquam. Duis id massa porttitor, ornare velit non, imperdiet orci. Phasellus auctor, lorem convallis mattis malesuada, nulla tellus consequat ante, eget hendrerit quam dui sit amet nisi. Sed rutrum vulputate enim, eget efficitur lorem luctus ut. Nullam ac mi at lorem accumsan ultrices quis sed nisi. Donec at lorem mattis, lacinia leo nec, fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla ornare fringilla ante vitae mattis. Integer rutrum vulputate tellus id consectetur. Integer eu quam quis arcu aliquam bibendum sit amet a tortor. Pellentesque lacinia odio id elit dictum, ac pharetra sem accumsan. Praesent venenatis turpis nisl, egestas imperdiet nibh aliquet vel.
 
-        Sed eu tortor non augue fringilla tempor. Suspendisse vitae consequat augue, in venenatis massa. Aliquam id laoreet nibh. Sed sollicitudin sem ante, id varius felis facilisis non. Integer semper arcu quis rhoncus efficitur. Nulla facilisi. Phasellus ut nulla non dui fermentum auctor. Proin tempus ante mauris, at semper orci scelerisque sed. Quisque eu arcu fermentum felis hendrerit porta eu ut neque. Proin sapien arcu, pulvinar sit amet urna pellentesque, lacinia fermentum magna. Maecenas convallis sagittis magna, eu ornare nunc dictum a.
+            Nullam malesuada dui id massa interdum, eu porttitor sapien scelerisque. Sed varius mi sed felis ullamcorper scelerisque. Etiam ornare neque eu nunc volutpat vestibulum. Vestibulum vel risus eros. Nam finibus, neque et gravida vehicula, lacus risus aliquam sem, quis congue purus enim at risus. Pellentesque nibh felis, gravida ut varius a, placerat
+          </p> */}
+        </div>
 
-        In vel nibh lectus. Ut laoreet ac ex quis interdum. Vestibulum mollis eu tortor ac hendrerit. Ut vulputate leo sit amet varius consequat. Nulla volutpat iaculis tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies tincidunt justo venenatis eleifend. Nulla elementum aliquet justo non venenatis. Nam tristique elementum augue, nec auctor erat lacinia a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur ac pellentesque lorem, non maximus ligula. Vivamus euismod massa ut pretium cursus. Sed vel eros velit. Phasellus vulputate ullamcorper metus vulputate volutpat. Donec iaculis felis tempor facilisis malesuada. Praesent metus elit, porta eget euismod et, maximus ac velit.
 
-        Aliquam consequat nisi pellentesque egestas maximus. Quisque ullamcorper turpis in mauris vestibulum eleifend. Donec nunc odio, laoreet sed orci quis, pulvinar tempor felis. Vivamus quis ex ipsum. Morbi lacinia magna volutpat tellus egestas gravida. Aliquam non dictum metus. Integer vel condimentum nunc, eget semper dolor. Duis lectus velit, eleifend vitae nibh at, consequat consequat libero. Sed id malesuada ipsum, sed finibus dui. Integer maximus lorem et mauris cursus aliquet.
+        <div className='aspect-[282/52] md:aspect-[282/68] w-[70rem] md:w-[106.25rem]
+        md:self-center'>
+          <div className='flex flex-col gap-3 md:gap-5 h-full'>
 
-        Aliquam nec vulputate nunc. Etiam id volutpat eros. Ut luctus massa quis accumsan sollicitudin. Praesent a luctus quam. Aenean eu tincidunt mauris. Sed enim odio, posuere et placerat at, convallis sit amet purus. Vestibulum tellus nunc, egestas ac tellus vitae, placerat suscipit ante. Nam non lorem neque. Pellentesque ipsum libero, efficitur eget justo vitae, suscipit egestas sem. Fusce congue nunc dui, vel semper urna tempor eget. Integer quis dignissim nisi, non dictum massa. Donec facilisis metus nibh, in mattis mauris lobortis dignissim. Vivamus faucibus libero mauris, vitae dictum metus efficitur nec. Nulla fermentum non mi non semper. Duis tristique sit amet velit ut vestibulum. Vivamus pulvinar ultrices tortor, eu blandit metus accumsan a.
+            <div className='hidden md:flex flex-auto gap-3 md:gap-5 h-16'>
+              {[...Array(13)].map(() => <BlackWhiteKey />)}
+              <Key className='w-[8.75rem] bg-white' />
+            </div>
 
-        Donec neque dolor, tempus vitae orci ac, ultricies tristique magna. Vivamus tristique velit et odio euismod porttitor. Morbi ultricies luctus est quis elementum. In consectetur consectetur felis vitae dictum. Maecenas vitae metus pellentesque, scelerisque est rhoncus, iaculis tortor. Fusce venenatis massa quis ex pellentesque tristique. Nullam tempor tortor a arcu venenatis pharetra. Nunc sit amet consectetur ligula, sed venenatis enim. Phasellus volutpat, est non consequat consectetur, lorem lacus accumsan neque, facilisis aliquet lacus nulla vel purus. Ut quis orci nec quam molestie molestie ut et lacus. Integer in volutpat ex. Integer ut mauris at mi lobortis lacinia quis ut metus. Maecenas enim nulla, consequat eget pellentesque nec, scelerisque a ipsum. Ut sit amet vehicula risus.
+            <div className='flex flex-auto gap-3 md:gap-5 h-16'>
+              <BlackWhiteKey className='w-[6.75rem]' />
+              {[...Array(12)].map(() => <BlackWhiteKey />)}
+              <BlackWhiteKey className='w-[6.75rem]' />
+            </div>
+
+            <div className='flex flex-auto gap-3 md:gap-5 h-16'>
+              <BlackWhiteKey className='w-[7.75rem]' />
+              {[...Array(11)].map(() => <BlackWhiteKey />)}
+              <BlackWhiteKey className='w-[10.5rem]' />
+            </div>
+
+            <div className='flex flex-auto gap-3 md:gap-5 h-16'>
+              <Link href='/auth'>
+                <Key className='
+                border-neutral-900 hover:bg-neutral-100 border-2 cursor-pointer
+                dark:border-white dark:hover:bg-neutral-800 w-[10.5rem] select-none
+                text-sm md:text-xl flex justify-center items-center 
+                '>
+                  Start for free
+                </Key>
+              </Link>
+              {[...Array(10)].map(() => <BlackWhiteKey />)}
+              <BlackWhiteKey className='w-[12.5rem]' />
+            </div>
+          </div>
+        </div>
+
       </div>
-
     </>
   )
 }
 
+// const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+//   const { user } = await supabaseClient.auth.api.getUserByCookie(req, res)
+
+//   if (user) {
+//     return {
+//       redirect: { destination: '/typing', permanent: false },
+//       props: {}
+//     }
+//   }
+
+//   return {
+//     props: {
+//       dev: {
+//         u: user ?? '', //error?.message,
+//         // e: error ?? null
+//       },
+
+//     }
+//   }
+
+// }
+
+// export { getServerSideProps }
 export default Home

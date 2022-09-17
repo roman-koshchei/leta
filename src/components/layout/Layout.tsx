@@ -1,18 +1,27 @@
+import { supabaseClient, supabaseServerClient, User } from '@supabase/supabase-auth-helpers/nextjs'
+import { useUser } from '@supabase/supabase-auth-helpers/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
+import { Logo } from './Logo'
+import { Navlink } from './Navlink'
 
 interface LayoutProps {
   children: ReactNode
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const [darkBrowser, setDarkBrowser] = useState(false)
+  const [dark, setDark] = useState(false)
+  const { user } = useUser()
 
-  const isDarkPrefered = globalThis.window
-    && globalThis.window.matchMedia('(prefers-color-scheme: dark)').matches
-
-  const [dark, setDark] = useState(isDarkPrefered)
+  useEffect(() => {
+    const isDarkBrowser = globalThis.window
+      && globalThis.window.matchMedia('(prefers-color-scheme: dark)').matches
+    setDarkBrowser(isDarkBrowser)
+    setDark(isDarkBrowser)
+  }, [])
 
   return (
     <>
@@ -21,30 +30,49 @@ const Layout = ({ children }: LayoutProps) => {
         {/* <link rel='icon' href='/dark-icon.ico' /> */}
 
 
-        {isDarkPrefered
+        {darkBrowser
           ? <link rel='icon' href='/img/light-icon.ico' />
           : <link rel='icon' href='/img/dark-icon.ico' />
         }
       </Head>
 
-      <div className={`${dark ? 'dark' : undefined}
-      bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white`}>
-        <div className=' max-w-screen-lg m-auto'>
+      <div className={dark ? 'dark' : ''}>
+        <div className='max-w-screen-lg px-6 m-auto h-screen flex flex-col'>
 
-          <nav>
-            <Link href='/'>
-              <Image src={`/img/${isDarkPrefered ? 'light' : 'dark'}-logo.svg`}
-                width={40} height={40} quality={100} />
-            </Link>
+          <nav className='flex-none flex justify-between items-center pt-6 w-full'>
+            <Navlink href='/'>
+              <Logo />
+            </Navlink>
 
-            <div>
+            <Navlink href='/typing'>
+              Type
+            </Navlink>
 
-            </div>
+            <Navlink href='/create'>
+              Create
+            </Navlink>
+
+            <Navlink href='/guides'>
+              Guides
+            </Navlink>
+
+            {user ?
+              <div className='cursor-pointer' onClick={() => supabaseClient.auth.signOut()}>Sign out</div>
+              :
+              <Navlink href='/auth'>
+                Start
+              </Navlink>
+            }
+
           </nav>
 
-          <main>
+          <main className='flex-1'>
             {children}
           </main>
+
+          <footer className='flex-none h-6'>
+
+          </footer>
         </div>
       </div>
     </>

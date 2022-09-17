@@ -13,10 +13,10 @@ class LetaDocument extends Document {
   render() {
     return (
       <Html
-        className='scrollbar-thin scrollbar-thumb-neutral-900 dark:scrollbar-thumb-white 
-        scrollbar-track-white dark:scrollbar-track-neutral-900'>
+        className='bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white overflow-x-hidden'>
         <Head />
-        <body>
+        <body className='scrollbar-thin scrollbar-thumb-neutral-900 dark:scrollbar-thumb-white 
+        scrollbar-track-white dark:scrollbar-track-neutral-900 overflow-x-hidden'>
           <Main />
           <NextScript />
         </body>
