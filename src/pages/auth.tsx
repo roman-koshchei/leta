@@ -6,17 +6,14 @@ import { supabase } from '../utils/supa';
 const AuthPage: NextPage<{ theme: boolean }> = ({ theme }) => {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
-
   const [stage, setStage] = useState<'input' | 'success' | 'error'>('input')
 
   const handleAuth = async () => {
     setLoading(true)
-    const { error } = await supabase.auth.signIn({ email }, { shouldCreateUser: true, redirectTo: '/typing' })
+    const { error } = await supabase.auth.signIn({ email }, { shouldCreateUser: true })
     setStage(error ? 'error' : 'success')
-
     setLoading(false)
   }
-
 
   return (
     <>
