@@ -1,4 +1,4 @@
-import { Children, CSSProperties, MouseEventHandler, ReactNode } from 'react'
+import { CSSProperties, forwardRef, MouseEventHandler, ReactNode, Ref } from 'react'
 
 interface KeyProps {
   w?: string
@@ -7,14 +7,13 @@ interface KeyProps {
   className?: string
   style?: CSSProperties
 
+
   onClick?: MouseEventHandler
 
   children?: ReactNode
 }
 
-const Key = ({ className = '',
-  style,
-  onClick, children }: KeyProps) => {
+const Key = ({ className = '', style, onClick, children }: KeyProps) => {
   return (
     <div className={`flex-auto rounded ${className}`}
       onClick={onClick} style={style}>

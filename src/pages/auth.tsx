@@ -17,6 +17,7 @@ const AuthPage: NextPage<{ theme: boolean }> = ({ theme }) => {
     setLoading(false)
   }
 
+
   return (
     <>
       <Title>LETA - Start right now!</Title>
@@ -24,9 +25,9 @@ const AuthPage: NextPage<{ theme: boolean }> = ({ theme }) => {
       <Center >
         <div className='max-w-lg'>
           {stage == 'error'
-            ? <div>Sorry something went wrong. We will try to fix it as soon as possible. Thanks for being our user!</div>
+            ? <div className='text-2xl'>Sorry something went wrong. We will try to fix it as soon as possible. Thanks for being our user!</div>
             : stage == 'success'
-              ? <div>Check your email to get magic link. Just click on it to start!</div>
+              ? <div className='text-2xl'>Check your email to get magic link. Just click on it to start!</div>
               : <>
                 <h1 className='text-5xl font-bold mb-5'>Start right now!</h1>
                 <p className='text-lg mb-14'>
