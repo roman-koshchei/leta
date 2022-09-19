@@ -30,7 +30,7 @@ const Layout = ({ children }: LayoutProps) => {
         <meta name="description" content="Become faster than ever in one click" />
         {/* <link rel='icon' href='/dark-icon.ico' /> */}
 
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
         {darkBrowser
           ? <link rel='icon' href='/img/light-icon.ico' />
           : <link rel='icon' href='/img/dark-icon.ico' />
