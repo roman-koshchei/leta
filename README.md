@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="150" src="./docs/assets/logo.png" />
+  <img width="100" src="./docs/img/icon.png" />
   <h1 align="center">LETA</h1>
   <p align="center">
     Don't waste time looking at what you are typing, spend time thinking about the meaning.
