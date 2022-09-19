@@ -28,7 +28,7 @@ const Home: NextPage = () => {
       <div className='grid grid-cols-1 md:grid-cols-2 h-full'>
 
         <div className='self-center'>
-          <h1 className='text-5xl md:text-7xl font-bold mb-5 md:mb-10'>
+          <h1 className='text-5xl md:text-7xl font-bold mb-5 md:mb-10 md:mr-4'>
             Type faster than ever with LETA
           </h1>
 
