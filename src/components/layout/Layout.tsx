@@ -1,9 +1,5 @@
-import { supabaseClient, supabaseServerClient, User } from '@supabase/supabase-auth-helpers/nextjs'
 import { useUser } from '@supabase/supabase-auth-helpers/react'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'
 import { Logo } from './Logo'
 import { Navlink } from './Navlink'
@@ -24,13 +20,17 @@ const Layout = ({ children }: LayoutProps) => {
     setDark(isDarkBrowser)
   }, [])
 
+  const signOut = async () => {
+    const { supa } = await import('../../utils/supa')
+    supa.auth.signOut()
+  }
+
   return (
     <>
       <Head>
         <meta name="description" content="Become faster than ever in one click" />
         {/* <link rel='icon' href='/dark-icon.ico' /> */}
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
         {darkBrowser
           ? <link rel='icon' href='/img/light-icon.ico' />
           : <link rel='icon' href='/img/dark-icon.ico' />
@@ -58,7 +58,7 @@ const Layout = ({ children }: LayoutProps) => {
             </Navlink>
 
             {user ?
-              <div className='cursor-pointer' onClick={() => supabaseClient.auth.signOut()}>Sign out</div>
+              <div className='cursor-pointer' onClick={signOut}>Sign out</div>
               :
               <Navlink href='/auth'>
                 Start

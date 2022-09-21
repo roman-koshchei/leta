@@ -14,7 +14,9 @@ class LetaDocument extends Document {
     return (
       <Html
         className='bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white overflow-x-hidden'>
-        <Head />
+        <Head >
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
+        </Head>
         <body className='scrollbar-thin scrollbar-thumb-neutral-900 dark:scrollbar-thumb-white 
         scrollbar-track-white dark:scrollbar-track-neutral-900 overflow-x-hidden'>
           <Main />

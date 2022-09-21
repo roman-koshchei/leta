@@ -18,7 +18,6 @@ const BlackWhiteKey = ({ className = 'w-16' }: { className?: string }) => {
   return <Key className={`${className} bg-neutral-900 dark:bg-white`} />
 }
 
-
 const Home: NextPage = () => {
   const { user } = useUser()
   return (

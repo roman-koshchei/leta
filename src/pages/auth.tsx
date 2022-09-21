@@ -1,16 +1,16 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useState } from 'react';
 import { Btn, Center, Input, Title } from '../components';
-import { supabase } from '../utils/supa';
 
-const AuthPage: NextPage<{ theme: boolean }> = ({ theme }) => {
+const AuthPage: NextPage = () => {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [stage, setStage] = useState<'input' | 'success' | 'error'>('input')
 
   const handleAuth = async () => {
     setLoading(true)
-    const { error } = await supabase.auth.signIn({ email }, { shouldCreateUser: true })
+    const { supa } = await import('../utils/supa');
+    const { error } = await supa.auth.signIn({ email }, { shouldCreateUser: true })
     setStage(error ? 'error' : 'success')
     setLoading(false)
   }
@@ -52,28 +52,4 @@ const AuthPage: NextPage<{ theme: boolean }> = ({ theme }) => {
   )
 }
 
-
-// const getServerSideProps: GetServerSideProps = async () => {
-
-//   const session = supabase.auth.session();
-
-
-//   if (session) {
-//     return {
-//       props: {
-//         session
-//       },
-//       redirect: { destination: '/typing', permanent: false }
-//     }
-//   }
-
-//   return {
-//     props: {
-//       session
-//     }
-//   }
-
-// }
-
-// export { getServerSideProps }
 export default AuthPage
