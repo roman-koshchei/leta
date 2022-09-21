@@ -1,5 +1,6 @@
 import { useUser } from '@supabase/supabase-auth-helpers/react'
 import Head from 'next/head'
+import Link from 'next/link'
 import { ReactNode, useEffect, useState } from 'react'
 import { Logo } from './Logo'
 import { Navlink } from './Navlink'
@@ -71,9 +72,15 @@ const Layout = ({ children }: LayoutProps) => {
             {children}
           </main>
 
-          <footer className='flex-none h-6'>
+          {/* <footer className='flex-none pb-4 flex justify-between items-center w-full'>
+            <div>
+              Support us at <a href="https://opencollective.com/paragoda">OpenCollective</a>
+            </div>
+            <Link href='https://github.com/paragoda/leta'>
+              GitHub
+            </Link>
 
-          </footer>
+          </footer> */}
         </div>
       </div>
     </>

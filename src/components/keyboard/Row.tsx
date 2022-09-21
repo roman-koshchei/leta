@@ -5,9 +5,9 @@ interface RowProps {
   children: ReactNode
 }
 
-const Row = ({ className, children }: RowProps) => {
+const Row = ({ className = 'gap-3 md:gap-5', children }: RowProps) => {
   return (
-    <div className={`flex flex-auto gap-3 md:gap-5 h-16 ${className}`}>
+    <div className={`flex flex-auto h-16 ${className}`}>
       {children}
     </div>
   )

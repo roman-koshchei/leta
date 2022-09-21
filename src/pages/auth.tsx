@@ -11,6 +11,7 @@ const AuthPage: NextPage = () => {
     setLoading(true)
     const { supa } = await import('../utils/supa');
     const { error } = await supa.auth.signIn({ email }, { shouldCreateUser: true })
+
     setStage(error ? 'error' : 'success')
     setLoading(false)
   }

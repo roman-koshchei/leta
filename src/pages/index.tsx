@@ -43,38 +43,41 @@ const Home: NextPage = () => {
           }
         </div>
 
-        <Keyboard>
-          <div className='hidden md:flex flex-auto gap-3 md:gap-5 h-16'>
-            {[...Array(13)].map((_, i) => <BlackWhiteKey key={`num-${i}`} />)}
-            <BlackWhiteKey className='w-[8.75rem]' />
-          </div>
+        <div className='aspect-[282/52] md:aspect-[282/68] w-[70rem] md:w-[106.25rem] md:self-center'>
+          <div className='flex flex-col h-full gap-3 md:gap-5'>
+            <div className='hidden md:flex flex-auto gap-3 md:gap-5 h-16'>
+              {[...Array(13)].map((_, i) => <BlackWhiteKey key={`num-${i}`} />)}
+              <BlackWhiteKey className='w-[8.75rem]' />
+            </div>
 
-          <Row>
-            <BlackWhiteKey className='w-[6.75rem]' />
-            {[...Array(12)].map((_, i) => <BlackWhiteKey key={`top-${i}`} />)}
-            <BlackWhiteKey className='w-[6.75rem]' />
-          </Row>
+            <Row>
+              <BlackWhiteKey className='w-[6.75rem]' />
+              {[...Array(12)].map((_, i) => <BlackWhiteKey key={`top-${i}`} />)}
+              <BlackWhiteKey className='w-[6.75rem]' />
+            </Row>
 
-          <Row>
-            <BlackWhiteKey className='w-[7.75rem]' />
-            {[...Array(11)].map((_, i) => <BlackWhiteKey key={`home-${i}`} />)}
-            <BlackWhiteKey className='w-[10.5rem]' />
-          </Row>
+            <Row>
+              <BlackWhiteKey className='w-[7.75rem]' />
+              {[...Array(11)].map((_, i) => <BlackWhiteKey key={`home-${i}`} />)}
+              <BlackWhiteKey className='w-[10.5rem]' />
+            </Row>
 
-          <Row>
-            <Link href={user ? '/typing' : '/auth'}>
-              <div className='flex-auto rounded
+            <Row>
+              <Link href={user ? '/typing' : '/auth'}>
+                <div className='flex-auto rounded
             border-neutral-900 hover:bg-neutral-100 border-2 cursor-pointer
             dark:border-white dark:hover:bg-neutral-800 w-[10.5rem] select-none
               text-sm md:text-xl flex justify-center items-center 
               '>
-                Start for free
-              </div>
-            </Link>
-            {[...Array(10)].map((_, i) => <BlackWhiteKey key={`bot-${i}`} />)}
-            <BlackWhiteKey className='w-[12.5rem]' />
-          </Row>
-        </Keyboard>
+                  Start for free
+                </div>
+              </Link>
+              {[...Array(10)].map((_, i) => <BlackWhiteKey key={`bot-${i}`} />)}
+              <BlackWhiteKey className='w-[12.5rem]' />
+            </Row>
+
+          </div>
+        </div>
       </div>
     </>
   )
