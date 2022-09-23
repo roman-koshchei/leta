@@ -3,15 +3,9 @@
 |              |                |
 |--------------|----------------|
 | UUID         | uuid           |
-| Email        | stirng         |
-| Name         | string         |
-| Slug         | string         |
-| Bio          | string         |
-| SocialLinks  | list of string |
-| Settings     | ref            |
 | Stats        | ref            |
 | AddedLayouts | list of ref    |
-
+| Settings     | ref            |
 
 # Settings
 
@@ -65,19 +59,13 @@ Mode means comparable or freedom
 |             |                 |
 |-------------|-----------------|
 | Name        | string          |
-| Date        | date            |
-| Creator     | string          |
-| Description | string          |
-| Website     | string          |
 | Mode        | ref or int      |
 | TopKeys     | array of string |
 | HomeKeys    | array of string |
 | BotKeys     | array of string |
-| TopFingers  | array of string |
-| HomeFingers | array of string |
-| BotFingers  | array of string |
 | Analysis    | ref             |
-| User        | ref             |
+
+
 
 
 # Analisis

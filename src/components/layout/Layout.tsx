@@ -1,4 +1,4 @@
-import { useUser } from '@supabase/supabase-auth-helpers/react'
+import { useUser } from '@supabase/auth-helpers-react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { ReactNode, useEffect, useState } from 'react'
