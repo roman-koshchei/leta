@@ -20,6 +20,7 @@ const BlackWhiteKey = ({ className = 'w-16' }: { className?: string }) => {
 
 const Home: NextPage = () => {
   const { user } = useUser()
+
   return (
     <>
       <Title>LETA - Type faster than ever</Title>

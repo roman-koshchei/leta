@@ -32,10 +32,7 @@ const Layout = ({ children }: LayoutProps) => {
         <meta name="description" content="Become faster than ever in one click" />
         {/* <link rel='icon' href='/dark-icon.ico' /> */}
 
-        {darkBrowser
-          ? <link rel='icon' href='/img/light-icon.ico' />
-          : <link rel='icon' href='/img/dark-icon.ico' />
-        }
+        <link rel='icon' href={darkBrowser ? '/img/light-icon.ico' : '/img/dark-icon.ico'} />
       </Head>
 
       <div className={dark ? 'dark' : ''}>

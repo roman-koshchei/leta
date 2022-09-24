@@ -54,18 +54,14 @@ Represent info about all taken tests by user.
 
 # Layout
 
-Mode means comparable or freedom
+Mode means classic or alternative
 
 |             |                 |
 |-------------|-----------------|
-| Name        | string          |
-| Mode        | ref or int      |
-| TopKeys     | array of string |
-| HomeKeys    | array of string |
-| BotKeys     | array of string |
-| Analysis    | ref             |
-
-
+| name        | string + pk     |
+| keys        | string          |
+| fingers     | string          |
+| analysis    | ref             |
 
 
 # Analisis
@@ -77,22 +73,24 @@ Mode means comparable or freedom
 
 |                        |                 |
 |------------------------|-----------------|
-| LeftInvardRolls        | double          |
-| LeftOutwardRolls       | double          |
-| RightInwardRolls       | double          |
-| RightOutwardRolls      | double          |
-| Alternates             | double          |
-| Onehands               | double          |
-| Redirects              | double          |
-| WeightedFingerSpeed    | array of double |
-| UnweightedFingerSpeed  | array of double |
-| WeightedHighestSpeed   | `Pair`          |
-| UnweightedHighestSpeed | `Pair`          |
-| LeftIndexUsage         | double          |
-| RightIndexUsage        | double          |
-| Sfbs                   | double          |
-| Dsfbs                  | double          |
-| Lsbs                   | double          |
-| TopSfbs                | array of `Pair` |
-| WorstBigrams           | array of `Pair` |
-| Score                  | double          |
+| rolls                  | double          |   
+| alternates             | double          |
+| onehands               | double          |
+| redirects              | double          |
+| weightedFingerSpeed    | array of double |
+| unweightedFingerSpeed  | array of double |
+| weightedHighestSpeed   | `Pair`          |
+| unweightedHighestSpeed | `Pair`          |
+| leftIndexUsage         | double          |
+| rightIndexUsage        | double          |
+| sfbs                   | double          |
+| dsfbs                  | double          |
+| lsbs                   | double          |
+| topSfbs                | array of `Pair` |
+| worstBigrams           | array of `Pair` |
+| score                  | double          |
+
+| leftInvardRolls        | double          |
+| leftOutwardRolls       | double          |
+| rightInwardRolls       | double          |
+| rightOutwardRolls      | double          |

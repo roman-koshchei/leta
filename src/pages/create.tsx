@@ -1,7 +1,8 @@
 import { DragEventHandler, ReactNode, useState } from 'react'
-import { Center, Key, Row } from '../components'
+import { Btn, Center, Key, Row } from '../components'
 import { FingerColors } from '../models/finger'
 import { KeyInfo, QWERTY } from '../models/key'
+import { download } from '../utils/export'
 
 type DragKeyProps = {
   className?: string
@@ -23,6 +24,7 @@ const DragKey = ({ className = 'w-16', k, onDrag, onDrop, children }: DragKeyPro
 
 const Create = () => {
   const [keys, setKeys] = useState<KeyInfo[][]>(QWERTY)
+  const [strkeys, setStrkeys] = useState<string>("qwertyuiop[]\\asdfghjkl;'zxcvbnm,./")
   const [dragged, setDragged] = useState<{ row: number, col: number }>({ row: -1, col: -1 })
 
   const drop = (row: number, col: number) => {
@@ -36,13 +38,30 @@ const Create = () => {
       shift: keys[row][col].shift
     }
 
+
+
     newKeys[row][col] = {
       ...newKeys[row][col],
       primary: draggedKey.primary,
       shift: draggedKey.shift
     }
 
+    const drop = (i: number) => {
+      // * charecter that will newer
+      strkeys.replace(strkeys[i], '*')
+    }
+
     setKeys(newKeys)
+  }
+
+  const exportLayout = async () => {
+    const { win, download } = await import('../utils/export');
+    const qwerty = win({
+      name: 'QWERTY',
+      keys: "qwertyuiop[]\\asdfghjkl;'zxcvbnm,./",
+      fingers: '0123344567777012334456770123344567'
+    })
+    download('qwerty.klc', qwerty);
   }
 
   return (
@@ -102,6 +121,12 @@ const Create = () => {
         </div>
       </div>
 
+      <div className='mt-10'>
+        <div className='cursor-pointer' onClick={exportLayout}>
+          Export for windows
+        </div>
+
+      </div>
     </Center >
   )
 }
