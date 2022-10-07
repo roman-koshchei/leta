@@ -1,3 +1,4 @@
+import { isLetter } from '.'
 import { LayoutModel, shiftKeys } from '../../models/layout'
 
 /*
@@ -5,9 +6,6 @@ Export layout to klc file
 Now support only analyzable layouts
 */
 
-// only for english letters
-// for all change to comparing lower case and upper case
-const isLetter = (str: string) => str.match(/[a-z]/i);
 
 const hex = (char: string): string => {
   const hex = char.charCodeAt(0).toString(16)

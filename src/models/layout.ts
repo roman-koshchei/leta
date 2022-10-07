@@ -12,6 +12,20 @@ type LayoutModel = {
   fingers: string
 }
 
+const shiftKeys = new Map([
+  ['[', '{'],
+  [']', '}'],
+  ['\\', '|'],
+  [';', ':'],
+  ['\'', '"'],
+  [',', '<'],
+  ['.', '>'],
+  ['/', '?'],
+
+])
+
+export type { LayoutModel }
+export { shiftKeys }
 
 /* for all keys
 const shiftKeys = {
@@ -51,18 +65,3 @@ const shiftKeys = {
   '/': '',
 }
 */
-
-const shiftKeys = new Map([
-  ['[', '{'],
-  [']', '}'],
-  ['\\', '|'],
-  [';', ':'],
-  ['\'', '"'],
-  [',', '<'],
-  ['.', '>'],
-  ['/', '?'],
-
-])
-
-export type { LayoutModel }
-export { shiftKeys }
