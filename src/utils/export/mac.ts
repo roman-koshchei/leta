@@ -1,4 +1,4 @@
-import { isLetter } from '.';
+import { isLetter, LayoutExport, LayoutFile } from '.';
 import { LayoutModel, shiftKeys } from '../../models/layout'
 
 const macHex = new Map([
@@ -6,7 +6,7 @@ const macHex = new Map([
   ['>', '&#x003E;']
 ])
 
-const mac = (layout: LayoutModel) => {
+const mac: LayoutExport = (layout) => {
 
   // key
   const k = (i: number): string => {
@@ -28,7 +28,7 @@ const mac = (layout: LayoutModel) => {
     return shiftKeys.has(key) ? key : key.toUpperCase()
   }
 
-  return `<?xml version="1.1" encoding="UTF-8"?>
+  const content = `<?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <keyboard group="126" id="-10663" name="${layout.name}" maxout="1">
   <layouts>
@@ -827,6 +827,8 @@ const mac = (layout: LayoutModel) => {
     </keyMap>
   </keyMapSet>
 </keyboard>`
+
+  return { content, filename: `${layout.name}.keylayout` }
 }
 
 export { mac }

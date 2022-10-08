@@ -3,7 +3,7 @@ import { Center, } from '../components'
 import { ActionKeyboard } from '../components/create/ActionKeyboard'
 import { Finger, FingerColors } from '../models/finger'
 import { KeyFinger, QWERTY } from '../models/key'
-import { xmodmap } from '../utils/export'
+import { keyFingerMatrixToLayout } from '../models/layout'
 
 type Position = { row: number, col: number }
 
@@ -11,14 +11,19 @@ const Create = () => {
   const [keys, setKeys] = useState<KeyFinger[][]>(QWERTY)
   const [selected, setSelected] = useState<Position>({ row: -1, col: -1 })
 
-  const exportLayout = async () => {
-    const { xmodmap, win, download } = await import('../utils/export');
-    const qwerty = xmodmap({
-      name: 'QWERTY',
-      keys: "qwertyuiop[]\\asdfghjkl;'zxcvbnm,./",
-      fingers: '0123344567777012334456770123344567'
-    })
-    download('qwerty.xmodmap', qwerty);
+  const exportMacOS = async () => {
+    const { mac, download } = await import('../utils/export');
+    download(mac(keyFingerMatrixToLayout('l', keys)));
+  }
+
+  const exportWin = async () => {
+    const { win, download } = await import('../utils/export');
+    download(win(keyFingerMatrixToLayout('l', keys)));
+  }
+
+  const exportLinux = async () => {
+    const { xmodmap, download } = await import('../utils/export');
+    download(xmodmap(keyFingerMatrixToLayout('l', keys)));
   }
 
   const changeFinger = (finger: Finger) => {
@@ -30,15 +35,17 @@ const Create = () => {
     setKeys(newKeys)
   }
 
+
+
   return (
-    <Center className='text-2xl'>
+    <Center className='text-xl'>
 
       <div className='w-full'>
         <ActionKeyboard keys={{ val: keys, set: setKeys }}
           selected={{ val: selected, set: setSelected }} />
       </div>
 
-      <div className='mt-10'>
+      <div className='mt-10 w-full'>
 
         {selected.col != -1 ?
           <div>
@@ -58,8 +65,11 @@ const Create = () => {
           : null
         }
 
-        <div className='cursor-pointer' onClick={exportLayout}>
-          Export for windows
+        <div className='flex justify-between'>
+          Export for:
+          <button onClick={exportMacOS}>MacOS</button>
+          <button onClick={exportWin}>Windows</button>
+          <button onClick={exportLinux}>Linux</button>
         </div>
 
       </div>

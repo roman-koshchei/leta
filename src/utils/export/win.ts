@@ -1,4 +1,4 @@
-import { isLetter } from '.'
+import { isLetter, LayoutExport, LayoutFile } from '.'
 import { LayoutModel, shiftKeys } from '../../models/layout'
 
 /*
@@ -12,7 +12,7 @@ const hex = (char: string): string => {
   return `${"0".repeat(4 - hex.length)}${hex}`
 }
 
-const win = (layout: LayoutModel) => {
+const win: LayoutExport = (layout) => {
   // get key string 'k' for short
   const k = (i: number): string => {
     const key = layout.keys[i];
@@ -25,7 +25,7 @@ const win = (layout: LayoutModel) => {
     }
   }
 
-  return `KBD ${layout.name} "EN - ${layout.name}"
+  const content = `KBD ${layout.name} "EN - ${layout.name}"
 
 COPYRIGHT	"(c) 2022 ${layout.name}"
 
@@ -186,6 +186,8 @@ LANGUAGENAMES
 
 0409	English (United States)
 ENDKBD`
+
+  return { content, filename: `${layout.name}.klc` }
 }
 
 export { win }

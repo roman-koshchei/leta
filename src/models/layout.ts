@@ -6,6 +6,9 @@
 }
 */
 
+import { Layout } from '../components';
+import { KeyFinger } from './key';
+
 type LayoutModel = {
   name: string
   keys: string
@@ -24,8 +27,22 @@ const shiftKeys = new Map([
 
 ])
 
+const keyFingerMatrixToLayout = (name: string, matrix: KeyFinger[][]): LayoutModel => {
+  let keys = ''
+  let fingers = ''
+
+  for (const row of matrix) {
+    for (const keyFinger of row) {
+      keys += keyFinger.key
+      fingers += keyFinger.finger
+    }
+  }
+
+  return { name, keys, fingers }
+}
+
 export type { LayoutModel }
-export { shiftKeys }
+export { shiftKeys, keyFingerMatrixToLayout }
 
 /* for all keys
 const shiftKeys = {

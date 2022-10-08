@@ -1,3 +1,4 @@
+import { LayoutExport, LayoutFile } from '.'
 import { LayoutModel } from '../../models/layout'
 
 const xmodmapSymbols = new Map<string, string>([
@@ -16,8 +17,7 @@ Export layout to xmodmap file
 Now support only analyzable layouts
 */
 
-
-const xmodmap = (layout: LayoutModel) => {
+const xmodmap: LayoutExport = (layout) => {
 
   const k = (i: number) => {
     const key = layout.keys[i]
@@ -25,7 +25,7 @@ const xmodmap = (layout: LayoutModel) => {
     return symbol ?? `${key} ${key.toUpperCase()}`
   }
 
-  return `! xmodmap for ${layout.name} layout
+  const content = `! xmodmap for ${layout.name} layout
 ! number row
 keycode 49 = grave asciitilde
 keycode 10 = 1 exclam
@@ -77,6 +77,8 @@ keycode 58 = ${k(30)}
 keycode 59 = ${k(31)}
 keycode 60 = ${k(32)}
 keycode 61 = ${k(33)}`
+
+  return { content, filename: `${layout.name}.xmodmap` }
 }
 
 export { xmodmap }
