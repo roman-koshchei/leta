@@ -62,7 +62,7 @@ const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
             </Row> */}
 
         <Row className='gap-1 md:gap-2'>
-          <Key className='bg-neutral-100 w-[6.75rem]'>Tab</Key>
+          <Key className='bg-neutral-100 w-[6.75rem] flex justify-center items-center'>Tab</Key>
           {ActionRow(0, (col) => col == keys.val[0].length - 1 ? 'w-[6.75rem]' : 'w-16')}
           {/* {keys[0].map((keyFinger, col) =>
             <DragKey onDrag={() => setDragged({ row: 0, col })} onDrop={() => drop(0, col)}
@@ -73,16 +73,16 @@ const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
 
 
         <Row className='gap-1 md:gap-2'>
-          <Key className='bg-neutral-100 w-[7.75rem]'>Caps</Key>
+          <Key className='bg-neutral-100 w-[7.75rem] flex justify-center items-center'>Caps</Key>
           {ActionRow(1)}
-          <Key className='bg-neutral-100 w-[10.5rem]'>Enter</Key>
+          <Key className='bg-neutral-100 w-[10.5rem] flex justify-center items-center'>Enter</Key>
         </Row>
 
 
         <Row className='gap-1 md:gap-2'>
-          <Key className='bg-neutral-100 w-[10rem]'>Shift</Key>
+          <Key className='bg-neutral-100 w-[10rem] flex justify-center items-center'>Shift</Key>
           {ActionRow(2)}
-          <Key className='bg-neutral-100 w-[13rem]'>Shift</Key>
+          <Key className='bg-neutral-100 w-[13rem] flex justify-center items-center'>Shift</Key>
         </Row>
 
       </div>
