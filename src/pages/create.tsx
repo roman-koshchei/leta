@@ -48,13 +48,13 @@ const Create = () => {
       <div className='mt-10 w-full'>
 
         {selected.col != -1 ?
-          <div>
+          <div className='flex justify-between mb-10'>
             Letter: {keys[selected.row][selected.col].key} finger: {keys[selected.row][selected.col].finger}
             <div className='flex'>
               {Object.values(Finger).map(f => {
                 const bg = FingerColors.get(f as Finger) ?? '';
                 return (
-                  <div className={`${bg} w-8 h-8`} onClick={() => changeFinger(f as Finger)}>
+                  <div className={`${bg} w-8 h-8`} onClick={() => changeFinger(f as Finger)} key={f}>
 
                   </div>
                 )
