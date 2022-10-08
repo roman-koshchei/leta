@@ -6,11 +6,11 @@ interface KeyboardProps {
   children: ReactNode
 }
 
-const Keyboard = ({ className, gap, children }: KeyboardProps) => {
+const Keyboard = ({ className, gap = 'gap-3 md:gap-5', children }: KeyboardProps) => {
   return (
     <div className='aspect-[282/52] md:aspect-[282/68] w-[70rem] md:w-[106.25rem]
     md:self-center'>
-      <div className='flex flex-col gap-3 md:gap-5 h-full'>
+      <div className={`flex flex-col h-full ${gap}`}>
         {children}
       </div>
     </div>

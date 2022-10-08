@@ -1,0 +1,21 @@
+import { type } from 'os'
+import { LayoutModel } from '../../models/layout'
+
+export * from './win'
+export * from './linux'
+export * from './mac'
+export * from './download'
+
+type LayoutFile = {
+  filename: string
+  content: string
+}
+
+type LayoutExport = (layout: LayoutModel) => LayoutFile
+
+// only for english letters
+// for all change to comparing lower case and upper case
+const isLetter = (str: string) => str.match(/[a-z]/i);
+
+export { isLetter }
+export type { LayoutFile, LayoutExport }
