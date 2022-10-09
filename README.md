@@ -26,16 +26,17 @@ You will be able to:
 - [ ] Functional development
 
 ## Functions
-- [ ] Layout export:
-  - [x] Windows
-  - [ ] Mac
-  - [ ] Linux
-- [ ] Auth
+- [x] Export layout to files:
+  - [x] Windows (.klc)
+  - [x] MacOS (.keylayout)
+  - [x] Linux (.xmodmap)
+- [x] Auth
 - [ ] Typing test
-- [ ] Create own layout:
-  - [ ] Comparable
-  - [ ] Flexible
-
+- [ ] Create own layout
+- [ ] Layout installers for:
+  - [ ] Windows
+  - [ ] MacOS
+ 
 ## Like what you're seeing?
 
 We're hoping to turn this into our full-time job! Support us on [Open Collective](https://opencollective.com/paragoda)
