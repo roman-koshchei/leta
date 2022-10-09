@@ -13,8 +13,8 @@ type Analysis = {
   alternates: number
   onehands: number
   redirects: number
-  weightedFingerSpeed: number
-  unweightedFingerSpeed: number
+  weightedFingerSpeed: number[]
+  unweightedFingerSpeed: number[]
   weightedHighestSpeed: StrNumPair
   unweightedHighestSpeed: StrNumPair
   leftIndexUsage: number
@@ -28,4 +28,4 @@ type Analysis = {
 }
 
 
-export type { Analysis }
+export type { Analysis, StrNumPair }
