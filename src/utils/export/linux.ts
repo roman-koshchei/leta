@@ -82,3 +82,4 @@ keycode 61 = ${k(33)}`
 }
 
 export { xmodmap }
+export default xmodmap

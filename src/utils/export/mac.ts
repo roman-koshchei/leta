@@ -832,3 +832,5 @@ const mac: LayoutExport = (layout) => {
 }
 
 export { mac }
+
+export default mac

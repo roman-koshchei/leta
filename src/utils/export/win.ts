@@ -191,7 +191,7 @@ ENDKBD`
 }
 
 export { win }
-
+export default win
 
 /*
 for all 
