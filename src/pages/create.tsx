@@ -80,9 +80,9 @@ const Create = () => {
             <button onClick={() => exportLayout('linux')}>Linux</button>
           </div>
 
-          <div>
+          {/* <div>
             <button onClick={analyzeLayout}>Analyze</button>
-          </div>
+          </div> */}
 
         </div>
       </Center >
