@@ -39,4 +39,4 @@ You will be able to:
  
 ## Like what you're seeing?
 
-We're hoping to turn this into our full-time job! Support us on [Open Collective](https://opencollective.com/paragoda)
+We're hoping to turn this into our full-time job! Support us on [Open Collective](https://opencollective.com/paragoda). And we will be able to buy domain (leta.pro)
