@@ -1,9 +1,6 @@
-import { useUser } from '@supabase/auth-helpers-react'
 import Head from 'next/head'
-import Link from 'next/link'
 import { ReactNode, useEffect, useState } from 'react'
-import { Logo } from './Logo'
-import { Navlink } from './Navlink'
+import { Navbar } from './Navbar'
 
 interface LayoutProps {
   children: ReactNode
@@ -12,7 +9,6 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const [darkBrowser, setDarkBrowser] = useState(false)
   const [dark, setDark] = useState(false)
-  const { user } = useUser()
 
   useEffect(() => {
     const isDarkBrowser = globalThis.window
@@ -21,10 +17,6 @@ const Layout = ({ children }: LayoutProps) => {
     setDark(isDarkBrowser)
   }, [])
 
-  const signOut = async () => {
-    const { supa } = await import('../../utils/supa')
-    supa.auth.signOut()
-  }
 
   return (
     <>
@@ -36,34 +28,9 @@ const Layout = ({ children }: LayoutProps) => {
       </Head>
 
       <div className={dark ? 'dark' : ''}>
-        <div className='max-w-screen-lg px-6 m-auto h-screen flex flex-col'>
+        <div className='max-w-screen-xl px-6 m-auto h-screen flex flex-col'>
 
-          <nav className='flex-none flex justify-between items-center pt-6 w-full'>
-            <Navlink href='/'>
-              <Logo />
-            </Navlink>
-
-            <Navlink href='/typing'>
-              Type
-            </Navlink>
-
-            <Navlink href='/create'>
-              Create
-            </Navlink>
-
-            <Navlink href='/guides'>
-              Guides
-            </Navlink>
-
-            {user ?
-              <div className='cursor-pointer' onClick={signOut}>Sign out</div>
-              :
-              <Navlink href='/auth'>
-                Start
-              </Navlink>
-            }
-
-          </nav>
+          <Navbar />
 
           <main className='flex-1'>
             {children}

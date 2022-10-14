@@ -19,7 +19,6 @@ type ActionKeyboardProps = {
 }
 
 
-
 const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
 
   const [dragged, setDragged] = useState<Position>({ row: -1, col: -1 })
@@ -51,7 +50,7 @@ const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
 
   return (
     <div className='aspect-[282/52] select-none'>
-      <div className='flex flex-col h-full gap-1 md:gap-2 text-base text-neutral-900'>
+      <div className='flex flex-col h-full gap-1 md:gap-2 text-neutral-900 md:text-xl'>
 
         {/* <Row className='gap-1 md:gap-2'>
               {keys[0].map((key, col) =>
@@ -65,11 +64,6 @@ const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
         <Row className='gap-1 md:gap-2'>
           <SystemKey className='w-[6.75rem]'>Tab</SystemKey>
           {ActionRow(0, (col) => col == keys.val[0].length - 1 ? 'w-[6.75rem]' : 'w-16')}
-          {/* {keys[0].map((keyFinger, col) =>
-            <DragKey onDrag={() => setDragged({ row: 0, col })} onDrop={() => drop(0, col)}
-              className={col == keys[0].length - 1 ? 'w-[6.75rem]' : 'w-16'} key={keyFinger.key}
-              kf={keyFinger} onClick={() => setSelected({ row: 0, col })} />
-          )} */}
         </Row>
 
 

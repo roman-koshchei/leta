@@ -1,7 +1,7 @@
 import { DragEventHandler, MouseEventHandler, ReactNode, useState } from 'react'
-import { Center, Input, Title, } from '../components'
+import { Center, Input, sharedButtonStyle, TextButton, Title, } from '../components'
 import { ActionKeyboard } from '../components/create/ActionKeyboard'
-import { Finger, FingerColors } from '../models/finger'
+import { Finger, FingerColors, FingerNames } from '../models/finger'
 import { KeyFinger, QWERTY } from '../models/key'
 import { keyFingerMatrixToLayout } from '../models/layout'
 
@@ -37,6 +37,18 @@ const Create = () => {
     analyze(keyFingerMatrixToLayout(name, keys))
   }
 
+  const FingerButton = ({ finger }: { finger: Finger }) => {
+    const bg = FingerColors.get(finger) ?? ''
+
+    return (
+      <button onClick={() => changeFinger(finger)} key={`finger${finger}`}
+        className={`${sharedButtonStyle} py-3 px-5 text-neutral-900 ${bg}`}
+      >
+        {FingerNames[finger > 3 ? 7 - finger : finger]}
+      </button>
+    )
+  }
+
   return (
     <>
       <Title>LETA - Create layout</Title>
@@ -52,18 +64,16 @@ const Create = () => {
 
           {selected.col != -1 ?
             <div className='flex justify-between mb-10'>
-              Letter: {keys[selected.row][selected.col].key} finger: {keys[selected.row][selected.col].finger}
-              <div className='flex'>
-                {Object.values(Finger).map(f => {
-                  const bg = FingerColors.get(f as Finger) ?? '';
-                  return (
-                    <div className={`${bg} w-8 h-8`} onClick={() => changeFinger(f as Finger)} key={f}>
-
-                    </div>
-                  )
-                })}
+              Letter: {keys[selected.row][selected.col].key}
+              finger: {keys[selected.row][selected.col].finger}
+              Hand: {keys[selected.row][selected.col].finger > 3 ? 'Right' : 'Left'}
+              <div className='flex gap-2'>
+                {Object.values(Finger)
+                  .map(f => typeof f != 'string' ? <FingerButton finger={f} /> : <></>)
+                }
               </div>
 
+              <TextButton onClick={() => setSelected({ row: -1, col: -1 })}>Close</TextButton>
             </div>
             : null
           }
@@ -75,9 +85,9 @@ const Create = () => {
                 onChange={(e: any) => setName(e.target.value)} />
               for
             </div>
-            <button onClick={() => exportLayout('mac')}>MacOS</button>
-            <button onClick={() => exportLayout('win')}>Windows</button>
-            <button onClick={() => exportLayout('linux')}>Linux</button>
+            <TextButton onClick={() => exportLayout('mac')}>MacOS</TextButton>
+            <TextButton onClick={() => exportLayout('linux')}>Linux</TextButton>
+            <TextButton onClick={() => exportLayout('win')}>Windows</TextButton>
           </div>
 
           <div>

@@ -1,6 +1,6 @@
 // common
 export * from './common/Input'
-export * from './common/Btn'
+export * from './common/Button'
 export * from './common/Center'
 
 // keyboard

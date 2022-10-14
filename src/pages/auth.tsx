@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
-import { Btn, Center, Input, Title } from '../components';
+import { FilledButton, Center, Input, Title } from '../components';
 
 const AuthPage: NextPage = () => {
   const [email, setEmail] = useState('')
@@ -37,12 +37,12 @@ const AuthPage: NextPage = () => {
 
                 {loading ?
                   <div>Wait a bit now to waste less time in future</div>
-                  : <Btn onClick={(e) => {
+                  : <FilledButton onClick={(e) => {
                     e.preventDefault()
                     handleAuth()
                   }}>
                     Send magic link
-                  </Btn>
+                  </FilledButton>
                 }
               </>
           }
