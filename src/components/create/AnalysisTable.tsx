@@ -45,7 +45,7 @@ const FingerSpeed = ({ weight, speed }: SpeedProps) => (
   <div>
     <h3 className='font-semibold text-xl'>{weight} finger speed</h3>
     <div className='grid grid-rows-2 grid-flow-col place-content-between'>
-      {speed.map(speed => <div>{speed.toFixed(4)}</div>)}
+      {speed.map(speed => <div key={`fingerSpeed-${speed}`}>{speed.toFixed(4)}</div>)}
     </div>
   </div>
 )
@@ -111,14 +111,14 @@ const AnalysisTable = ({ analysis, className }: AnalysisTableProps) => {
         <div>
           <h3 className='font-semibold text-xl'>Top same finger bigrams</h3>
           <div className='grid grid-rows-5 grid-flow-col place-content-between'>
-            {analysis.topSfbs.map(sfb => <div>{sfb.str} {sfb.num.toFixed(4)} %</div>)}
+            {analysis.topSfbs.map(sfb => <div key={`topSfb-${sfb.str}`}>{sfb.str} {sfb.num.toFixed(4)} %</div>)}
           </div>
         </div>
 
         <div >
           <h3 className='font-semibold text-xl'>Worst bigrams</h3>
           <div className='grid grid-rows-5 grid-flow-col place-content-between'>
-            {analysis.worstBigrams.map(sfb => <div>{sfb.str} {sfb.num.toFixed(4)}</div>)}
+            {analysis.worstBigrams.map(sfb => <div key={`worstBigram-${sfb.str}`}>{sfb.str} {sfb.num.toFixed(4)}</div>)}
           </div>
         </div>
 
