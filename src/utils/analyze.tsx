@@ -31,16 +31,13 @@ const jsonToAnalysis = (data: any): Analysis => {
     }),
     worstBigrams: data.worstBigrams.map((pair: any): StrNumPair => {
       return { str: pair.ngram, num: pair.count }
-    }),
-    score: data.score
+    })
   }
 }
 
-const analyze = async (layout: LayoutModel) => {
+const analyze = async (layout: LayoutModel): Promise<Analysis> => {
   const uri = `https://genkey-api.herokuapp.com/together/?keys=${encodeURIComponent(layout.keys)}&fingers=${layout.fingers}`
-  const analysis = await fetch(uri).then(data => data.json()).then(json => jsonToAnalysis(json))
-
-  console.log(analysis)
+  return await fetch(uri).then(data => data.json()).then(json => jsonToAnalysis(json))
 }
 
 export { analyze }

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { Key, Keyboard, Row, Title } from '../components'
+import { Key, OutlinedButton, Row, Title } from '../components'
 import { useUser } from '@supabase/auth-helpers-react'
 
 /*
@@ -14,9 +14,9 @@ should include:
 - Short instructive videos to promote features
 */
 
-const BlackWhiteKey = ({ className = 'w-16' }: { className?: string }) => {
-  return <Key className={`${className} bg-neutral-900 dark:bg-white`} />
-}
+const BlackWhiteKey = ({ className = 'w-16' }: { className?: string }) => (
+  <Key className={`${className} cursor-default bg-neutral-900 dark:bg-white`} />
+)
 
 const Home: NextPage = () => {
   const { user } = useUser()
@@ -65,13 +65,9 @@ const Home: NextPage = () => {
 
             <Row>
               <Link href={user ? '/typing' : '/auth'}>
-                <div className='flex-auto rounded
-            border-neutral-900 hover:bg-neutral-100 border-2 cursor-pointer
-            dark:border-white dark:hover:bg-neutral-800 w-[10.5rem] select-none
-              text-sm md:text-xl flex justify-center items-center 
-              '>
+                <OutlinedButton className='flex-auto w-[10.5rem]'>
                   Start for free
-                </div>
+                </OutlinedButton>
               </Link>
               {[...Array(10)].map((_, i) => <BlackWhiteKey key={`bot-${i}`} />)}
               <BlackWhiteKey className='w-[12.5rem]' />

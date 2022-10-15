@@ -1,7 +1,9 @@
-import { DragEventHandler, MouseEventHandler, ReactNode, useState } from 'react'
-import { Center, Input, Title, } from '../components'
+import { useState } from 'react'
+import { Center, Input, OutlinedButton, sharedButtonStyle, TextButton, Title, } from '../components'
 import { ActionKeyboard } from '../components/create/ActionKeyboard'
-import { Finger, FingerColors } from '../models/finger'
+import { AnalysisTable } from '../components/create/AnalysisTable'
+import { Analysis } from '../models'
+import { Finger, FingerColors, FingerNames } from '../models/finger'
 import { KeyFinger, QWERTY } from '../models/key'
 import { keyFingerMatrixToLayout } from '../models/layout'
 
@@ -11,6 +13,7 @@ const Create = () => {
   const [keys, setKeys] = useState<KeyFinger[][]>(QWERTY)
   const [name, setName] = useState<string>('')
   const [selected, setSelected] = useState<Position>({ row: -1, col: -1 })
+  const [analysis, setAnalysis] = useState<Analysis | undefined>()
 
   const exportLayout = async (target: string) => {
     const trimName = name.trim()
@@ -25,23 +28,32 @@ const Create = () => {
 
   const changeFinger = (finger: Finger) => {
     let newKeys = Array.from(keys)
-    newKeys[selected.row][selected.col] = {
-      key: keys[selected.row][selected.col].key,
-      finger
-    }
+    newKeys[selected.row][selected.col] = { key: keys[selected.row][selected.col].key, finger }
     setKeys(newKeys)
   }
 
   const analyzeLayout = async () => {
     const { analyze } = await import('../utils/analyze')
-    analyze(keyFingerMatrixToLayout(name, keys))
+    setAnalysis(await analyze(keyFingerMatrixToLayout(name, keys)))
+  }
+
+  const FingerButton = ({ finger }: { finger: Finger }) => {
+    const bg = FingerColors.get(finger) ?? ''
+
+    return (
+      <button onClick={() => changeFinger(finger)} key={`finger${finger}`}
+        className={`${sharedButtonStyle} py-3 px-5 text-neutral-900 ${bg}`}
+      >
+        {FingerNames[finger > 3 ? 7 - finger : finger]}
+      </button>
+    )
   }
 
   return (
     <>
       <Title>LETA - Create layout</Title>
 
-      <Center className='text-lg'>
+      <Center className='text-lg pb-10'>
 
         <div className='w-full'>
           <ActionKeyboard keys={{ val: keys, set: setKeys }}
@@ -49,40 +61,35 @@ const Create = () => {
         </div>
 
         <div className='mt-10 w-full'>
-
           {selected.col != -1 ?
-            <div className='flex justify-between mb-10'>
-              Letter: {keys[selected.row][selected.col].key} finger: {keys[selected.row][selected.col].finger}
-              <div className='flex'>
-                {Object.values(Finger).map(f => {
-                  const bg = FingerColors.get(f as Finger) ?? '';
-                  return (
-                    <div className={`${bg} w-8 h-8`} onClick={() => changeFinger(f as Finger)} key={f}>
-
-                    </div>
-                  )
-                })}
+            <div className='flex justify-between items-center mb-10'>
+              Hand: {keys[selected.row][selected.col].finger > 3 ? 'Right' : 'Left'}
+              <div className='flex gap-2'>
+                {Object.values(Finger)
+                  .map(f => typeof f != 'string' ? <FingerButton finger={f} /> : <></>)
+                }
               </div>
 
+              <TextButton onClick={() => setSelected({ row: -1, col: -1 })}>Close</TextButton>
             </div>
-            : null
+            : <></>
           }
 
-          <div className='flex justify-between'>
+          <div className='flex justify-between flex-wrap gap-y-5'>
+            <OutlinedButton onClick={analyzeLayout}>Analyze</OutlinedButton>
+
             <div className='flex items-center gap-5'>
               Export
               <Input type='text' value={name} placeholder='layout name' className='py-3 px-5'
                 onChange={(e: any) => setName(e.target.value)} />
               for
             </div>
-            <button onClick={() => exportLayout('mac')}>MacOS</button>
-            <button onClick={() => exportLayout('win')}>Windows</button>
-            <button onClick={() => exportLayout('linux')}>Linux</button>
+            <TextButton onClick={() => exportLayout('mac')}>MacOS</TextButton>
+            <TextButton onClick={() => exportLayout('linux')}>Linux</TextButton>
+            <TextButton onClick={() => exportLayout('win')}>Windows</TextButton>
           </div>
 
-          {/* <div>
-            <button onClick={analyzeLayout}>Analyze</button>
-          </div> */}
+          {analysis ? <AnalysisTable analysis={analysis} className='mt-10' /> : <></>}
 
         </div>
       </Center >

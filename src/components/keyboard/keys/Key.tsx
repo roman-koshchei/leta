@@ -9,9 +9,9 @@ interface KeyProps {
 
 const Key = ({ className = '', onClick, children }: KeyProps) => {
   return (
-    <div className={`flex-auto rounded ${className}`} onClick={onClick}>
+    <button className={`flex-auto rounded ${className}`} onClick={onClick}>
       {children}
-    </div >
+    </button >
   )
 }
 

@@ -1,5 +1,3 @@
-import { type } from 'os'
-
 type StrNumPair = {
   str: string
   num: number
@@ -24,7 +22,6 @@ type Analysis = {
   lsbs: number
   topSfbs: StrNumPair[]
   worstBigrams: StrNumPair[]
-  score: number
 }
 
 

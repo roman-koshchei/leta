@@ -18,67 +18,51 @@ type ActionKeyboardProps = {
   selected: State<Position>
 }
 
-
-
 const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
-
   const [dragged, setDragged] = useState<Position>({ row: -1, col: -1 })
 
   const drop = (row: number, col: number) => {
-    // * charecter that will newer
+    if (dragged.row == row && dragged.col == col) return
+
     let newKeys = Array.from(keys.val);
     const c = newKeys[row][col]
     const d = newKeys[dragged.row][dragged.col]
 
-    newKeys[row][col] = {
-      key: d.key,
-      finger: c.finger
-    }
-    newKeys[dragged.row][dragged.col] = {
-      key: c.key,
-      finger: d.finger
-    }
-
+    newKeys[row][col] = { key: d.key, finger: c.finger }
+    newKeys[dragged.row][dragged.col] = { key: c.key, finger: d.finger }
     keys.set(newKeys)
   }
 
-  const ActionRow = (row: number, className?: (col: number) => string) => {
-    return keys.val[row].map((keyFinger, col) =>
-      <ActionKey onDrag={() => setDragged({ row, col })} onDrop={() => drop(row, col)}
-        key={keyFinger.key} kf={keyFinger} onClick={() => selected.set({ row, col })}
-        className={className ? className(col) : undefined} />)
+  const ActionRow = (row: number, w?: (col: number) => string) => {
+    return keys.val[row].map((keyFinger, col) => {
+      const click = () => selected.set(
+        selected.val.row == row && selected.val.col == col
+          ? { row: -1, col: -1 }
+          : { row, col }
+      )
+
+
+
+      return <ActionKey onDrag={() => setDragged({ row, col })} onDrop={() => drop(row, col)}
+        key={keyFinger.key} keyFinger={keyFinger} onClick={click}
+        w={`${w ? w(col) : 'w-16'} ${selected.val.row == row && selected.val.col == col ? 'border-2 border-neutral-900 dark:border-white' : ''}`} />
+    })
   }
 
   return (
     <div className='aspect-[282/52] select-none'>
-      <div className='flex flex-col h-full gap-1 md:gap-2 text-base text-neutral-900'>
-
-        {/* <Row className='gap-1 md:gap-2'>
-              {keys[0].map((key, col) =>
-                <DragKey onDrag={() => setDragged({ row: 0, col })} onDrop={() => drop(0, col)}>
-                  {key.primary}
-                </DragKey>
-              )}
-              <Key className='bg-neutral-400 w-[8.75rem]'>Backspace</Key>
-            </Row> */}
+      <div className='flex flex-col h-full gap-1 md:gap-2 text-neutral-900 md:text-xl'>
 
         <Row className='gap-1 md:gap-2'>
           <SystemKey className='w-[6.75rem]'>Tab</SystemKey>
           {ActionRow(0, (col) => col == keys.val[0].length - 1 ? 'w-[6.75rem]' : 'w-16')}
-          {/* {keys[0].map((keyFinger, col) =>
-            <DragKey onDrag={() => setDragged({ row: 0, col })} onDrop={() => drop(0, col)}
-              className={col == keys[0].length - 1 ? 'w-[6.75rem]' : 'w-16'} key={keyFinger.key}
-              kf={keyFinger} onClick={() => setSelected({ row: 0, col })} />
-          )} */}
         </Row>
-
 
         <Row className='gap-1 md:gap-2'>
           <SystemKey className='w-[7.75rem]'>Caps</SystemKey>
           {ActionRow(1)}
           <SystemKey className='w-[10.5rem]'>Enter</SystemKey>
         </Row>
-
 
         <Row className='gap-1 md:gap-2'>
           <SystemKey className='w-[10rem]'>Shift</SystemKey>
@@ -89,7 +73,6 @@ const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
       </div>
     </div>
   )
-
 }
 
 export { ActionKeyboard }
