@@ -1,5 +1,5 @@
 enum Finger {
-  LeftPinky,
+  LeftPinky, // 0
   LeftRing,
   LeftMiddle,
   LeftIndex,
@@ -8,7 +8,7 @@ enum Finger {
   RightIndex,
   RightMiddle,
   RightRing,
-  RightPinky,
+  RightPinky, // 7
 }
 
 const FingerNames = [

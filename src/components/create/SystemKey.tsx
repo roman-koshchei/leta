@@ -6,12 +6,10 @@ type SystemKeyProps = {
   children: ReactNode
 }
 
-const SystemKey = ({ className, children }: SystemKeyProps) => {
-  return (
-    <Key className={`bg-neutral-100 flex justify-center items-center ${className}`}>
-      {children}
-    </Key>
-  )
-}
+const SystemKey = ({ className, children }: SystemKeyProps) => (
+  <Key className={`bg-neutral-100 dark:bg-neutral-800 dark:text-white cursor-default ${className}`}>
+    {children}
+  </Key>
+)
 
 export { SystemKey }

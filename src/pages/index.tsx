@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { FilledButton, Key, Keyboard, OutlinedButton, Row, Title } from '../components'
+import { Key, OutlinedButton, Row, Title } from '../components'
 import { useUser } from '@supabase/auth-helpers-react'
 
 /*
@@ -14,9 +14,9 @@ should include:
 - Short instructive videos to promote features
 */
 
-const BlackWhiteKey = ({ className = 'w-16' }: { className?: string }) => {
-  return <Key className={`${className} bg-neutral-900 dark:bg-white`} />
-}
+const BlackWhiteKey = ({ className = 'w-16' }: { className?: string }) => (
+  <Key className={`${className} cursor-default bg-neutral-900 dark:bg-white`} />
+)
 
 const Home: NextPage = () => {
   const { user } = useUser()

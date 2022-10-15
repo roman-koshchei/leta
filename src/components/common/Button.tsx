@@ -1,9 +1,8 @@
 import { type } from 'os'
 import { MouseEventHandler, ReactNode } from 'react'
-import { Finger, FingerColors } from '../../models'
-
 type ButtonProps = {
   className?: string          // additional styles
+  // disabled?: boolean
 
   onClick?: MouseEventHandler
   children?: ReactNode
@@ -12,7 +11,7 @@ type ButtonProps = {
 const sharedButtonStyle = 'text-lg rounded select-none'
 
 //px-7
-const FilledButton = ({ className = 'py-5', onClick, children }: ButtonProps) => {
+const FilledButton = ({ className = 'py-3 px-5', onClick, children }: ButtonProps) => {
   return (
     <button onClick={onClick} className={`${className} ${sharedButtonStyle}
      text-white bg-neutral-900 hover:bg-neutral-800
@@ -25,7 +24,7 @@ const FilledButton = ({ className = 'py-5', onClick, children }: ButtonProps) =>
 }
 
 //px-7
-const OutlinedButton = ({ className = 'py-5', onClick, children }: ButtonProps) => {
+const OutlinedButton = ({ className = 'py-3 px-5', onClick, children }: ButtonProps) => {
   return (
     <button onClick={onClick} className={`${className} ${sharedButtonStyle} border-2
      text-neutral-900 bg-white hover:bg-neutral-100 border-neutral-900
