@@ -1,16 +1,15 @@
 import { useUser } from '@supabase/auth-helpers-react'
 import Link from 'next/link'
-import { ReactNode } from 'react'
-import { OutlinedButton, TextButton } from '../common/Button'
+import { TextButton } from '../common/Button'
 import { Logo } from './Logo'
+import { State } from '../../models'
+import { Moon, Sun } from './SunMoon'
 
-type NavlinkProps = {
-  href: string
-  children: ReactNode
+type NavbarProps = {
+  dark: State<boolean>
 }
 
-
-const Navbar = () => {
+const Navbar = ({ dark }: NavbarProps) => {
   const { user } = useUser()
 
   const signOut = async () => {
@@ -31,6 +30,11 @@ const Navbar = () => {
       <Link href='/create'>
         <TextButton>Create</TextButton>
       </Link>
+
+
+      <TextButton onClick={() => dark.set(!dark.val)}>
+        {dark.val ? <Sun /> : <Moon />}
+      </TextButton>
 
       {/* <Navlink href='/guides'>Guides</Navlink> */}
 

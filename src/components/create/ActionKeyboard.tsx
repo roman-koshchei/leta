@@ -1,17 +1,11 @@
-import { type } from 'os'
-import { Dispatch, SetStateAction, useState } from 'react'
-import { KeyFinger } from '../../models/key'
-import { Key } from '../keyboard/keys/Key'
+import { useState } from 'react'
+import { KeyFinger, State } from '../../models'
 import { Row } from '../keyboard/Row'
 import { ActionKey } from './ActionKey'
 import { SystemKey } from './SystemKey'
 
 type Position = { row: number, col: number }
 
-type State<T> = {
-  val: T,
-  set: Dispatch<SetStateAction<T>>
-}
 
 type ActionKeyboardProps = {
   keys: State<KeyFinger[][]>
