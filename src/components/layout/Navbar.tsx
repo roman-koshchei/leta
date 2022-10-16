@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { TextButton } from '../common/Button'
 import { Logo } from './Logo'
 import { State } from '../../models'
-import { Moon, Sun } from './SunMoon'
+import { Moon, Sun } from './Icons'
 
 type NavbarProps = {
   dark: State<boolean>
@@ -20,12 +20,19 @@ const Navbar = ({ dark }: NavbarProps) => {
   return (
     <nav className='flex-none flex justify-between items-center py-5'>
       <Link href='/'>
-        <div className='cursor-pointer'>
+        <div className='cursor-pointer mr-2'>
           <Logo />
         </div>
       </Link>
 
       {/* <Navlink href='/typing'>Type</Navlink> */}
+
+      {user
+        ? <TextButton onClick={signOut}>Sign out</TextButton>
+        : <Link href='/auth'>
+          <TextButton>Start</TextButton>
+        </Link>
+      }
 
       <Link href='/create'>
         <TextButton>Create</TextButton>
@@ -38,12 +45,10 @@ const Navbar = ({ dark }: NavbarProps) => {
 
       {/* <Navlink href='/guides'>Guides</Navlink> */}
 
-      {user
-        ? <TextButton onClick={signOut}>Sign out</TextButton>
-        : <Link href='/auth'>
-          <TextButton>Start</TextButton>
-        </Link>
-      }
+      <a href='https://github.com/paragoda/leta/' target='_blank' rel='noopener noreferrer'>
+        <TextButton>GitHub</TextButton>
+      </a>
+
     </nav>
   )
 }

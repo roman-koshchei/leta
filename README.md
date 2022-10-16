@@ -17,12 +17,11 @@ You will be able to:
 
 ## Steps
 
-- [x] Technical requirements [->](./docs/tech-requirements.md)
+- [x] Technical requirements [->](./docs/mds/tech-requirements.md)
 - [ ] Design [->](https://www.figma.com/file/CIx1UK6ndPDBPQL9wDGQA6/leta-design?node-id=0%3A1)
 - [x] Logo
-- [ ] Database structure [->](./docs/db-structure.md)
-- [x] Tech stack definition [->](./docs/tech-stack.md)
-- [ ] Architecture
+- [ ] Database structure [->](./docs/mds/db-structure.md)
+- [x] Tech stack definition [->](./docs/mds/tech-stack.md)
 - [ ] Functional development
 
 ## Functions
@@ -31,8 +30,8 @@ You will be able to:
   - [x] MacOS (.keylayout)
   - [x] Linux (.xmodmap)
 - [x] Auth
+- [x] Analyze layout
 - [ ] Typing test
-- [ ] Create own layout
 - [ ] Layout installers for:
   - [ ] Windows
   - [ ] MacOS

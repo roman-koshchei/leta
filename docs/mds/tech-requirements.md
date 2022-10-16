@@ -17,7 +17,6 @@ Functional blocks:
 5. Layout creator
 6. Layout downloader
 7. Guides
-8. PWA or Desktop
 
 
 ## 2.1. Auth
