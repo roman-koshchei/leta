@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { TextButton } from '../common/Button'
 import { Logo } from './Logo'
 import { State } from '../../models'
-import { Moon, Sun, GitHub } from './Icons'
+import { Moon, Sun } from './Icons'
 
 type NavbarProps = {
   dark: State<boolean>
