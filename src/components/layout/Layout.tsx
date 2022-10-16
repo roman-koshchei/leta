@@ -29,7 +29,7 @@ const Layout = ({ children }: LayoutProps) => {
       </Head>
 
       <div className={dark ? 'dark' : ''}>
-        <div className='overflow-y-auto
+        <div className='overflow-y-auto overflow-x-hidden
         bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white 
         scrollbar-thin scrollbar-thumb-neutral-900 scrollbar-track-white
         dark:scrollbar-thumb-white dark:scrollbar-track-neutral-900
