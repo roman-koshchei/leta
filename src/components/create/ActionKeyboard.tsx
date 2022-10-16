@@ -36,7 +36,6 @@ const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
       )
 
 
-
       return <ActionKey onDrag={() => setDragged({ row, col })} onDrop={() => drop(row, col)}
         key={keyFinger.key} keyFinger={keyFinger} onClick={click}
         w={`${w ? w(col) : 'w-16'} ${selected.val.row == row && selected.val.col == col ? 'border-2 border-neutral-900 dark:border-white' : ''}`} />
