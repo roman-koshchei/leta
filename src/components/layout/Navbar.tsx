@@ -45,7 +45,7 @@ const Navbar = ({ dark }: NavbarProps) => {
 
       {/* <Navlink href='/guides'>Guides</Navlink> */}
 
-      <a href='https://github.com/paragoda/leta/' target='_blank' rel='noopener'>
+      <a href='https://github.com/paragoda/leta/' target='_blank' rel='noopener noreferrer'>
         <TextButton>GitHub</TextButton>
       </a>
 
