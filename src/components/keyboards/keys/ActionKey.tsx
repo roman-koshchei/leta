@@ -1,6 +1,6 @@
 import { MouseEventHandler, DragEventHandler } from 'react'
-import { FingerColors } from '../../models/finger'
-import { KeyFinger } from '../../models/key'
+import { FingerColors } from '../../../models/finger'
+import { KeyFinger } from '../../../models/key'
 
 type ActionKeyProps = {
   w?: string                 // width style

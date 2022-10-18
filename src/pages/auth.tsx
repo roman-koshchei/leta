@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import { FilledButton, Center, Input, Title } from '../components';
 
 const AuthPage: NextPage = () => {
@@ -11,7 +11,7 @@ const AuthPage: NextPage = () => {
     const trimEmail = email.trim()
     if (trimEmail != '') {
       setLoading(true)
-      const { supa } = await import('../utils/supa');
+      const { supa } = await import('../utils/supabase');
       const { error } = await supa.auth.signIn({ email }, { shouldCreateUser: true })
       setStage(error ? 'error' : 'success')
       setLoading(false)

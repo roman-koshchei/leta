@@ -13,7 +13,7 @@ const Navbar = ({ dark }: NavbarProps) => {
   const { user } = useUser()
 
   const signOut = async () => {
-    const { supa } = await import('../../utils/supa')
+    const { supa } = await import('../../utils/supabase')
     supa.auth.signOut()
   }
 

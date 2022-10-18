@@ -1,5 +1,4 @@
-import { LayoutExport, LayoutFile } from '.'
-import { LayoutModel } from '../../models/layout'
+import { LayoutExport } from '.'
 
 const xmodmapSymbols = new Map<string, string>([
   ['[', 'bracketleft braceleft'],

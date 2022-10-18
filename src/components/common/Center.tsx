@@ -5,12 +5,10 @@ interface CenterProps {
   children: ReactNode
 }
 
-const Center = ({ className = '', children }: CenterProps) => {
-  return (
-    <div className={`flex flex-col justify-center items-center h-full ${className}`}>
-      {children}
-    </div>
-  )
-}
+const Center = ({ className = '', children }: CenterProps) => (
+  <div className={`flex flex-col justify-center items-center h-full ${className}`}>
+    {children}
+  </div>
+)
 
 export { Center }

@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import { KeyFinger, State } from '../../models'
-import { Row } from '../keyboard/Row'
-import { ActionKey } from './ActionKey'
-import { SystemKey } from './SystemKey'
+import { Row } from './Row'
+import { SystemKey, ActionKey } from './keys'
 
 type Position = { row: number, col: number }
-
 
 type ActionKeyboardProps = {
   keys: State<KeyFinger[][]>
@@ -19,28 +17,26 @@ const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
     if (dragged.row == row && dragged.col == col) return
 
     let newKeys = Array.from(keys.val);
-    const c = newKeys[row][col]
-    const d = newKeys[dragged.row][dragged.col]
 
-    newKeys[row][col] = { key: d.key, finger: c.finger }
-    newKeys[dragged.row][dragged.col] = { key: c.key, finger: d.finger }
+    const currentKey = newKeys[row][col].key
+    newKeys[row][col].key = newKeys[dragged.row][dragged.col].key
+    newKeys[dragged.row][dragged.col].key = currentKey
+
     keys.set(newKeys)
   }
 
-  const ActionRow = (row: number, w?: (col: number) => string) => {
-    return keys.val[row].map((keyFinger, col) => {
-      const click = () => selected.set(
-        selected.val.row == row && selected.val.col == col
-          ? { row: -1, col: -1 }
-          : { row, col }
-      )
+  const ActionRow = (row: number, w?: (col: number) => string) => keys.val[row]
+    .map((keyFinger, col) => {
+      const isSelected = selected.val.row == row && selected.val.col == col
 
+      const click = () => selected.set(isSelected ? { row: -1, col: -1 } : { row, col })
 
       return <ActionKey onDrag={() => setDragged({ row, col })} onDrop={() => drop(row, col)}
-        key={keyFinger.key} keyFinger={keyFinger} onClick={click}
-        w={`${w ? w(col) : 'w-16'} ${selected.val.row == row && selected.val.col == col ? 'border-2 border-neutral-900 dark:border-white' : ''}`} />
+        key={`action-key-${keyFinger.key}`} keyFinger={keyFinger} onClick={click}
+        w={`${w ? w(col) : 'w-16'} ${isSelected
+          ? 'border-2 border-neutral-900 dark:border-white' : ''}`} />
     })
-  }
+
 
   return (
     <div className='aspect-[282/52] select-none'>

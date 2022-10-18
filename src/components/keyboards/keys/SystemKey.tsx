@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Key } from '../keyboard/keys/Key'
+import { Key } from './Key'
 
 type SystemKeyProps = {
   className?: string
