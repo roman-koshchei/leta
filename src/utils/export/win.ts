@@ -1,11 +1,10 @@
-import { isLetter, LayoutExport, LayoutFile } from '.'
-import { LayoutModel, shiftKeys } from '../../models/layout'
+import { isLetter, LayoutExport } from '.'
+import { shiftKeys } from '../../models'
 
 /*
 Export layout to klc file
 Now support only analyzable layouts
 */
-
 
 const hex = (char: string): string => {
   const hex = char.charCodeAt(0).toString(16)

@@ -1,13 +1,9 @@
 // common
-export * from './common/Input'
-export * from './common/Button'
-export * from './common/Center'
+export * from './common'
 
 // keyboard
-export * from './keyboard/keys/Key'
-export * from './keyboard/Row'
-export * from './keyboard/Keyboard'
+export * from './keyboards'
+export * from './analysis'
 
 // layout
-export * from './layout/Layout'
-export * from './layout/Title'
+export * from './layout'

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { Key, OutlinedButton, Row, Title } from '../components'
 import { useUser } from '@supabase/auth-helpers-react'
+import { BlackWhiteKey, OutlinedButton, Row, Title } from '../components'
 
 /*
 page will work as landing page
@@ -13,10 +13,6 @@ should include:
 - Product features
 - Short instructive videos to promote features
 */
-
-const BlackWhiteKey = ({ className = 'w-16' }: { className?: string }) => (
-  <Key className={`${className} cursor-default bg-neutral-900 dark:bg-white`} />
-)
 
 const Home: NextPage = () => {
   const { user } = useUser()
@@ -79,8 +75,5 @@ const Home: NextPage = () => {
     </>
   )
 }
-
-// const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-//   const { user } = await supabaseClient.auth.api.getUserByCookie(req, res)
 
 export default Home

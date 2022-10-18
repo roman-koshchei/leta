@@ -2,9 +2,7 @@ import Head from 'next/head'
 import { ReactNode, useEffect, useState } from 'react'
 import { Navbar } from './Navbar'
 
-type LayoutProps = {
-  children: ReactNode
-}
+type LayoutProps = { children: ReactNode }
 
 const Layout = ({ children }: LayoutProps) => {
   const [darkBrowser, setDarkBrowser] = useState(false)
@@ -17,14 +15,10 @@ const Layout = ({ children }: LayoutProps) => {
     setDark(isDarkBrowser)
   }, [])
 
-  console.log(dark)
-
   return (
     <>
       <Head>
         <meta name="description" content="Become faster than ever in one click" />
-        {/* <link rel='icon' href='/dark-icon.ico' /> */}
-
         <link rel='icon' href={darkBrowser ? '/img/light-icon.ico' : '/img/dark-icon.ico'} />
       </Head>
 
