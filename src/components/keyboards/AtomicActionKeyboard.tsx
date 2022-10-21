@@ -20,15 +20,15 @@ const draggedAtom = atom<PrimitiveAtom<KeyFinger>>(atom(QWERTY[0][0]))
 
 const AtomicActionKeyboard = ({ selected }: ActionKeyboardProps) => {
   const [keys] = useAtom(atomicKeysAtom)
-  const [draggedPosition, setDraggedPosition] = useState<Position>({ row: 0, col: 0 })
+  // const [draggedPosition, setDraggedPosition] = useState<Position>({ row: 0, col: 0 })
   const [draggedA, setDraggedA] = useAtom(draggedAtom)
 
 
   const AtomicActionRow = (row: number, w?: (col: number) => string) => keys[row]
     .map((keyAtom, col) => {
       const [current, setCurrent] = useAtom(keyAtom)
-      const [dragged] = useAtom(keys[draggedPosition.row][draggedPosition.col])
-      const [d, setD] = useAtom(draggedA)
+      // const [dragged] = useAtom(keys[draggedPosition.row][draggedPosition.col])
+      const [dragged, setD] = useAtom(draggedA)
 
       const isSelected = selected.val.row == row && selected.val.col == col
       const click = () => selected.set(isSelected ? { row: 0, col: 0 } : { row, col })
@@ -36,7 +36,7 @@ const AtomicActionKeyboard = ({ selected }: ActionKeyboardProps) => {
       // theoreticaly faster than coping of keys
       // rerender only 2 keys
       const drop = () => {
-        if (dragged == undefined || dragged.key == current.key) return
+        if (draggedA == undefined || dragged.key == current.key) return
         const currentKey = current.key
         setCurrent({ key: dragged.key, finger: current.finger })
         // setDragged({ key: currentKey, finger: dragged.finger })
@@ -45,7 +45,7 @@ const AtomicActionKeyboard = ({ selected }: ActionKeyboardProps) => {
 
       const drag = () => {
         setDraggedA(keyAtom)
-        setDraggedPosition({ row, col })
+        // setDraggedPosition({ row, col })
       }
 
       return <ActionKey
