@@ -19,6 +19,7 @@ You will be able to:
 - Create own keyboard layout with analysis
 - Download layout files for any OS
 
+<br/>
 
 ## Steps
 
@@ -28,6 +29,8 @@ You will be able to:
 - [ ] Database structure [->](./docs/mds/db-structure.md)
 - [x] Tech stack definition [->](./docs/mds/tech-stack.md)
 - [ ] Functional development
+
+<br/>
 
 ## Functions
 - [x] Export layout to files:
@@ -40,7 +43,9 @@ You will be able to:
 - [ ] Layout installers for:
   - [ ] Windows
   - [ ] MacOS
- 
+
+<br/>
+
 ## Like what you're seeing?
 
 We're hoping to turn this into our full-time job! Support us on [Open Collective](https://opencollective.com/paragoda). And we will be able to buy domain (leta.pro)

@@ -1,16 +1,17 @@
+import { useAtom } from 'jotai'
 import { NextPage } from 'next'
 import { useState } from 'react'
 import {
-  Center, Input, OutlinedButton, sharedButtonStyle, TextButton, Title, ActionKeyboard, AnalysisTable
+  Center, Input, OutlinedButton, sharedButtonStyle, TextButton, Title, ActionKeyboard, AnalysisTable, AtomicActionKeyboard
 } from '../components'
 import {
-  Analysis, Finger, FingerColors, FingerNames, KeyFinger, QWERTY, keyFingerMatrixToLayout
+  Analysis, Finger, FingerColors, FingerNames, keyFingerMatrixToLayout, Position
 } from '../models'
+import { keysAtom } from '../utils'
 
-type Position = { row: number, col: number }
 
 const Create: NextPage = () => {
-  const [keys, setKeys] = useState<KeyFinger[][]>(QWERTY)
+  const [keys, setKeys] = useAtom(keysAtom)
   const [name, setName] = useState<string>('')
   const [selected, setSelected] = useState<Position>({ row: -1, col: -1 })
   const [analysis, setAnalysis] = useState<Analysis | undefined>()
@@ -55,8 +56,7 @@ const Create: NextPage = () => {
     <Center className='text-lg pb-10'>
 
       <div className='w-full'>
-        <ActionKeyboard keys={{ val: keys, set: setKeys }}
-          selected={{ val: selected, set: setSelected }} />
+        <AtomicActionKeyboard selected={{ val: selected, set: setSelected }} />
       </div>
 
       <div className='mt-10 w-full'>
