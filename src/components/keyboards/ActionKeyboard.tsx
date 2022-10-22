@@ -1,31 +1,24 @@
 import { useState } from 'react'
-import { KeyFinger, State } from '../../models'
+import { State, Position } from '../../models'
 import { Row } from './Row'
 import { SystemKey, ActionKey } from './keys'
-
-type Position = { row: number, col: number }
+import { keysStore, swapKeys } from '../../utils'
+import { useSnapshot } from 'valtio'
 
 type ActionKeyboardProps = {
-  keys: State<KeyFinger[][]>
   selected: State<Position>
 }
 
-const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
+const ActionKeyboard = ({ selected }: ActionKeyboardProps) => {
+  const { keys } = useSnapshot(keysStore)
   const [dragged, setDragged] = useState<Position>({ row: -1, col: -1 })
 
   const drop = (row: number, col: number) => {
     if (dragged.row == row && dragged.col == col) return
-
-    let newKeys = Array.from(keys.val);
-
-    const currentKey = newKeys[row][col].key
-    newKeys[row][col].key = newKeys[dragged.row][dragged.col].key
-    newKeys[dragged.row][dragged.col].key = currentKey
-
-    keys.set(newKeys)
+    swapKeys({ row, col }, dragged)
   }
 
-  const ActionRow = (row: number, w?: (col: number) => string) => keys.val[row]
+  const ActionRow = (row: number, w?: (col: number) => string) => keys[row]
     .map((keyFinger, col) => {
       const isSelected = selected.val.row == row && selected.val.col == col
 
@@ -44,7 +37,7 @@ const ActionKeyboard = ({ keys, selected }: ActionKeyboardProps) => {
 
         <Row className='gap-1 md:gap-2'>
           <SystemKey className='w-[6.75rem]'>Tab</SystemKey>
-          {ActionRow(0, (col) => col == keys.val[0].length - 1 ? 'w-[6.75rem]' : 'w-16')}
+          {ActionRow(0, (col) => col == keys[0].length - 1 ? 'w-[6.75rem]' : 'w-16')}
         </Row>
 
         <Row className='gap-1 md:gap-2'>

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { TextButton } from '../common/Button'
 import { Logo } from './Logo'
 import { State } from '../../models'
-import { Moon, Sun } from './Icons'
+import { Moon, Sun, UserIcon } from '../common'
 
 type NavbarProps = {
   dark: State<boolean>
@@ -12,10 +12,10 @@ type NavbarProps = {
 const Navbar = ({ dark }: NavbarProps) => {
   const { user } = useUser()
 
-  const signOut = async () => {
-    const { supa } = await import('../../utils/supabase')
-    supa.auth.signOut()
-  }
+  // const signOut = async () => {
+  //   const { supa } = await import('../../utils/supabase')
+  //   supa.auth.signOut()
+  // }
 
   return (
     <nav className='flex-none flex justify-between items-center py-5'>
@@ -27,12 +27,16 @@ const Navbar = ({ dark }: NavbarProps) => {
 
       {/* <Navlink href='/typing'>Type</Navlink> */}
 
-      {user
+      <Link href={user ? '/account' : '/auth'}>
+        <TextButton><UserIcon /></TextButton>
+      </Link>
+
+      {/* {user
         ? <TextButton onClick={signOut}>Sign out</TextButton>
         : <Link href='/auth'>
           <TextButton>Start</TextButton>
         </Link>
-      }
+      } */}
 
       <Link href='/create'>
         <TextButton>Create</TextButton>
