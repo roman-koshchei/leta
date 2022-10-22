@@ -1,30 +1,21 @@
-import { useAtom } from 'jotai'
 import { useState } from 'react'
-import { KeyFinger, State } from '../../models'
+import { State, Position } from '../../models'
 import { Row } from './Row'
 import { SystemKey, ActionKey } from './keys'
-import { keysAtom } from '../../utils'
-
-type Position = { row: number, col: number }
+import { keysStore, swapKeys } from '../../utils'
+import { useSnapshot } from 'valtio'
 
 type ActionKeyboardProps = {
   selected: State<Position>
 }
 
 const ActionKeyboard = ({ selected }: ActionKeyboardProps) => {
-  const [keys, setKeys] = useAtom(keysAtom)
+  const { keys } = useSnapshot(keysStore)
   const [dragged, setDragged] = useState<Position>({ row: -1, col: -1 })
 
   const drop = (row: number, col: number) => {
     if (dragged.row == row && dragged.col == col) return
-
-    let newKeys = Array.from(keys);
-
-    const currentKey = newKeys[row][col].key
-    newKeys[row][col].key = newKeys[dragged.row][dragged.col].key
-    newKeys[dragged.row][dragged.col].key = currentKey
-
-    setKeys(newKeys)
+    swapKeys({ row, col }, dragged)
   }
 
   const ActionRow = (row: number, w?: (col: number) => string) => keys[row]
