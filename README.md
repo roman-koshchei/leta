@@ -33,6 +33,7 @@ You will be able to:
 <br/>
 
 ## Functions
+
 - [x] Export layout to files:
   - [x] Windows (.klc)
   - [x] MacOS (.keylayout)
@@ -43,6 +44,20 @@ You will be able to:
 - [ ] Layout installers for:
   - [ ] Windows
   - [ ] MacOS
+
+<br/>
+
+## Tech Stack
+
+Frontend:
+- [Next.js](https://nextjs.org/learn/basics/create-nextjs-app/setup)
+- [Typescript](https://nextjs.org/learn/excel/typescript/create-tsconfig)
+- [Tailwind](https://tailwindcss.com/docs/installation/framework-guides)
+- [Valtio](https://valtio.pmnd.rs/)
+
+Backend:
+- [Supabase](https://app.supabase.com/)
+- [Genkey api](https://github.com/roman-koshchei/genkey-api)
 
 <br/>
 
