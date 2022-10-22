@@ -1,16 +1,16 @@
 import { NextPage } from 'next'
 import { useState } from 'react'
 import {
-  Center, Input, OutlinedButton, sharedButtonStyle, TextButton, Title, ActionKeyboard, AnalysisTable
+  Center, Input, OutlinedButton, sharedButtonStyle, TextButton, Title, AnalysisTable, ActionKeyboard
 } from '../components'
 import {
-  Analysis, Finger, FingerColors, FingerNames, KeyFinger, QWERTY, keyFingerMatrixToLayout
+  Analysis, Finger, FingerColors, FingerNames, Position
 } from '../models'
-
-type Position = { row: number, col: number }
+import { analyze, download, keysStore, keysToLayout, setFinger } from '../utils'
+import { useSnapshot } from 'valtio'
 
 const Create: NextPage = () => {
-  const [keys, setKeys] = useState<KeyFinger[][]>(QWERTY)
+  const { keys } = useSnapshot(keysStore)
   const [name, setName] = useState<string>('')
   const [selected, setSelected] = useState<Position>({ row: -1, col: -1 })
   const [analysis, setAnalysis] = useState<Analysis | undefined>()
@@ -18,24 +18,17 @@ const Create: NextPage = () => {
   const exportLayout = async (target: string) => {
     const trimName = name.trim()
     if (trimName != '') {
-      const { download } = await import('../utils');
       const getLayoutFile = (await import(`../utils/export/${target}`)).default
-      download(getLayoutFile(keyFingerMatrixToLayout(name, keys)));
+      download(getLayoutFile(keysToLayout(name)));
     } else {
       alert('Name of layout can\'t be empty')
     }
   }
 
-  const changeFinger = (finger: Finger) => {
-    let newKeys = Array.from(keys)
-    newKeys[selected.row][selected.col] = { key: keys[selected.row][selected.col].key, finger }
-    setKeys(newKeys)
-  }
+  const changeFinger = (finger: Finger) => setFinger(selected, finger)
 
-  const analyzeLayout = async () => {
-    const { analyze } = await import('../utils')
-    setAnalysis(await analyze(keyFingerMatrixToLayout(name, keys)))
-  }
+  const analyzeLayout = async () => setAnalysis(await analyze(keysToLayout(name)))
+
 
   const FingerButton = ({ finger }: { finger: Finger }) => {
     const bg = FingerColors.get(finger) ?? ''
@@ -55,8 +48,7 @@ const Create: NextPage = () => {
     <Center className='text-lg pb-10'>
 
       <div className='w-full'>
-        <ActionKeyboard keys={{ val: keys, set: setKeys }}
-          selected={{ val: selected, set: setSelected }} />
+        <ActionKeyboard selected={{ val: selected, set: setSelected }} />
       </div>
 
       <div className='mt-10 w-full'>
