@@ -1,5 +1,7 @@
 import { Finger } from './finger'
 
+type Position = { row: number, col: number }
+
 type KeyFinger = {
   key: string
   finger: Finger
@@ -49,4 +51,4 @@ const QWERTY: KeyFinger[][] = [
 ]
 
 export { QWERTY }
-export type { KeyFinger }
+export type { KeyFinger, Position }

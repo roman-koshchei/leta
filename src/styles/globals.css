@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Inter';
+  font-family: Inter, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }

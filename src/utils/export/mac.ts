@@ -831,6 +831,6 @@ const mac: LayoutExport = (layout) => {
   return { content, filename: `${layout.name}.keylayout` }
 }
 
-export { mac }
 
+export { mac }
 export default mac

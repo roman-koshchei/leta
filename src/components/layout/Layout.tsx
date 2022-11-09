@@ -2,9 +2,7 @@ import Head from 'next/head'
 import { ReactNode, useEffect, useState } from 'react'
 import { Navbar } from './Navbar'
 
-interface LayoutProps {
-  children: ReactNode
-}
+type LayoutProps = { children: ReactNode }
 
 const Layout = ({ children }: LayoutProps) => {
   const [darkBrowser, setDarkBrowser] = useState(false)
@@ -17,26 +15,29 @@ const Layout = ({ children }: LayoutProps) => {
     setDark(isDarkBrowser)
   }, [])
 
-
   return (
     <>
       <Head>
         <meta name="description" content="Become faster than ever in one click" />
-        {/* <link rel='icon' href='/dark-icon.ico' /> */}
-
         <link rel='icon' href={darkBrowser ? '/img/light-icon.ico' : '/img/dark-icon.ico'} />
       </Head>
 
       <div className={dark ? 'dark' : ''}>
-        <div className='max-w-screen-xl px-6 m-auto h-screen flex flex-col'>
+        <div className='overflow-y-auto overflow-x-hidden
+        bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white 
+        scrollbar-thin scrollbar-thumb-neutral-900 scrollbar-track-white
+        dark:scrollbar-thumb-white dark:scrollbar-track-neutral-900
+        '>
 
-          <Navbar />
+          <div className='max-w-screen-xl px-6 m-auto h-screen flex flex-col'>
 
-          <main className='flex-1'>
-            {children}
-          </main>
+            <Navbar dark={{ val: dark, set: setDark }} />
 
-          {/* <footer className='flex-none pb-4 flex justify-between items-center w-full'>
+            <main className='flex-1'>
+              {children}
+            </main>
+
+            {/* <footer className='flex-none pb-4 flex justify-between items-center w-full'>
             <div>
               Support us at <a href="https://opencollective.com/paragoda">OpenCollective</a>
             </div>
@@ -45,6 +46,7 @@ const Layout = ({ children }: LayoutProps) => {
             </Link>
 
           </footer> */}
+          </div>
         </div>
       </div>
     </>

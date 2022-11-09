@@ -3,17 +3,13 @@ enum Finger {
   LeftRing,
   LeftMiddle,
   LeftIndex,
-  // LeftThumb,
-  // RightThumb,
   RightIndex,
   RightMiddle,
   RightRing,
   RightPinky, // 7
 }
 
-const FingerNames = [
-  'Pinky', 'Ring', 'Middle', 'Index'
-]
+const FingerNames = ['Pinky', 'Ring', 'Middle', 'Index']
 
 const FingerColors = new Map<Finger, string>(
   [
@@ -21,8 +17,6 @@ const FingerColors = new Map<Finger, string>(
     [Finger.LeftRing, "bg-sky-200"],
     [Finger.LeftMiddle, "bg-indigo-200"],
     [Finger.LeftIndex, "bg-purple-200"],
-    // [Finger.LeftThumb, "bg-neutral-100"],
-    // [Finger.RightThumb, "bg-neutral-200"],
     [Finger.RightIndex, "bg-red-200"],
     [Finger.RightMiddle, "bg-orange-200"],
     [Finger.RightRing, "bg-yellow-200"],
