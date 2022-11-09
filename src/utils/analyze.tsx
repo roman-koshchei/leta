@@ -36,7 +36,7 @@ const jsonToAnalysis = (data: any): Analysis => {
 }
 
 const analyze = async (layout: LayoutModel): Promise<Analysis> => {
-  const uri = `https://genkey-api.herokuapp.com/together/?keys=${encodeURIComponent(layout.keys)}&fingers=${layout.fingers}`
+  const uri = `https://genkey.up.railway.app/together/?keys=${encodeURIComponent(layout.keys)}&fingers=${layout.fingers}`
   return await fetch(uri).then(data => data.json()).then(json => jsonToAnalysis(json))
 }
 
