@@ -17,9 +17,8 @@ should include:
 const Home: NextPage = () => {
   const { user } = useUser()
 
-  return (
-    <>
-      <Title>LETA - Type faster than ever</Title>
+  return <>
+      <Title>Type faster than ever</Title>
 
       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-5 h-full'>
 
@@ -72,8 +71,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-    </>
-  )
+  </>
 }
 
 export default Home

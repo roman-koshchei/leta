@@ -1,34 +1,46 @@
 import { NextPage } from 'next'
 import { useState } from 'react'
+import { useSnapshot } from 'valtio'
 import {
-  Center, Input, OutlinedButton, sharedButtonStyle, TextButton, Title, AnalysisTable, ActionKeyboard
+  Center, Input, OutlinedButton, sharedButtonStyle, TextButton, Title, AnalysisTable, ActionKeyboard, Textarea
 } from '../components'
 import {
   Analysis, Finger, FingerColors, FingerNames, Position
 } from '../models'
 import { analyze, download, keysStore, keysToLayout, setFinger } from '../utils'
-import { useSnapshot } from 'valtio'
+
+/*
+
+[x] Change position and finger of keys
+[x] Analyze layout
+[ ] Publish layout: enter description, tags?
+
+*/
 
 const Create: NextPage = () => {
   const { keys } = useSnapshot(keysStore)
   const [name, setName] = useState<string>('')
   const [selected, setSelected] = useState<Position>({ row: -1, col: -1 })
   const [analysis, setAnalysis] = useState<Analysis | undefined>()
+  
+  const [publish, setPublish] = useState(false)
+  const togglePublish = () => setPublish(!publish)
 
   const exportLayout = async (target: string) => {
     const trimName = name.trim()
-    if (trimName != '') {
-      const getLayoutFile = (await import(`../utils/export/${target}`)).default
-      download(getLayoutFile(keysToLayout(name)));
-    } else {
+
+    if (trimName == '') {
       alert('Name of layout can\'t be empty')
+      return;
     }
+    
+    const getLayoutFile = (await import(`../utils/export/${target}`)).default
+    download(getLayoutFile(keysToLayout(name)));
   }
 
   const changeFinger = (finger: Finger) => setFinger(selected, finger)
 
   const analyzeLayout = async () => setAnalysis(await analyze(keysToLayout(name)))
-
 
   const FingerButton = ({ finger }: { finger: Finger }) => {
     const bg = FingerColors.get(finger) ?? ''
@@ -43,7 +55,7 @@ const Create: NextPage = () => {
   }
 
   return <>
-    <Title>LETA - Create layout</Title>
+    <Title>Create layout</Title>
 
     <Center className='text-lg pb-10'>
 
@@ -66,20 +78,23 @@ const Create: NextPage = () => {
           : <></>
         }
 
-        <div className='flex justify-between flex-wrap gap-y-5'>
+        <div className='flex justify-between items-center flex-wrap gap-y-5'>
+          <OutlinedButton onClick={togglePublish}>Publish</OutlinedButton>
           <OutlinedButton onClick={analyzeLayout}>Analyze</OutlinedButton>
 
           <div className='flex items-center gap-5'>
-            Export
             <Input type='text' value={name} placeholder='layout name' className='py-3 px-5'
               onChange={(e: any) => setName(e.target.value)} />
-            for
+            
           </div>
+          <span>Export for:</span>
           <TextButton onClick={() => exportLayout('mac')}>MacOS</TextButton>
           <TextButton onClick={() => exportLayout('linux')}>Linux</TextButton>
           <TextButton onClick={() => exportLayout('win')}>Windows</TextButton>
         </div>
 
+        {publish ? <Textarea placeholder='Write layout description' className='mt-10' rows={10}/>: <></>}
+        
         {analysis ? <AnalysisTable analysis={analysis} className='mt-10' /> : <></>}
 
       </div>
