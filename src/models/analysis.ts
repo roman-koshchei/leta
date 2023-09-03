@@ -24,5 +24,4 @@ type Analysis = {
   worstBigrams: StrNumPair[]
 }
 
-
 export type { Analysis, StrNumPair }
