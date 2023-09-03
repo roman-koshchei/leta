@@ -17,7 +17,9 @@ You will be able to:
 - Create own keyboard layout with analysis
 - Download layout files for any OS
 
-# Future of project ends with version 1
+Anylisis are made with [Genkey API](https://github.com/roman-koshchei/genkey-api)
+
+## Future of project ends with version 1
 
 Developing this app is no longer in my plans. So I decided to finish it in a good state.
 I removed authentication and Supabase fully. Now you have 2 features to use:
