@@ -6,8 +6,7 @@
 }
 */
 
-import { Layout } from '../components';
-import { KeyFinger } from './key';
+import { KeyFinger } from "./key"
 
 type LayoutModel = {
   name: string
@@ -16,20 +15,22 @@ type LayoutModel = {
 }
 
 const shiftKeys = new Map([
-  ['[', '{'],
-  [']', '}'],
-  ['\\', '|'],
-  [';', ':'],
-  ['\'', '"'],
-  [',', '<'],
-  ['.', '>'],
-  ['/', '?'],
-
+  ["[", "{"],
+  ["]", "}"],
+  ["\\", "|"],
+  [";", ":"],
+  ["'", '"'],
+  [",", "<"],
+  [".", ">"],
+  ["/", "?"],
 ])
 
-const keyFingerMatrixToLayout = (name: string, matrix: KeyFinger[][]): LayoutModel => {
-  let keys = ''
-  let fingers = ''
+const keyFingerMatrixToLayout = (
+  name: string,
+  matrix: KeyFinger[][]
+): LayoutModel => {
+  let keys = ""
+  let fingers = ""
 
   for (const row of matrix) {
     for (const keyFinger of row) {

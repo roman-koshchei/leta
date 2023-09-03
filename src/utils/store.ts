@@ -1,6 +1,4 @@
 import { Finger, KeyFinger, keyFingerMatrixToLayout, Position, QWERTY } from '../models'
-
-
 import { proxy } from 'valtio'
 
 const keysStore = proxy<{ keys: KeyFinger[][] }>({ keys: QWERTY, })
