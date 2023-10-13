@@ -35,9 +35,6 @@ const Create: NextPage = () => {
   const [selected, setSelected] = useState<Position>({ row: -1, col: -1 })
   const [analysis, setAnalysis] = useState<Analysis | undefined>()
 
-  const [publish, setPublish] = useState(false)
-  const togglePublish = () => setPublish(!publish)
-
   const exportLayout = async (target: string) => {
     const trimName = name.trim()
 
@@ -101,7 +98,6 @@ const Create: NextPage = () => {
           )}
 
           <div className="flex justify-between items-center flex-wrap gap-y-5">
-            <OutlinedButton onClick={togglePublish}>Publish</OutlinedButton>
             <OutlinedButton onClick={analyzeLayout}>Analyze</OutlinedButton>
 
             <div className="flex items-center gap-5">
@@ -118,16 +114,6 @@ const Create: NextPage = () => {
             <TextButton onClick={() => exportLayout("linux")}>Linux</TextButton>
             <TextButton onClick={() => exportLayout("win")}>Windows</TextButton>
           </div>
-
-          {publish ? (
-            <Textarea
-              placeholder="Write layout description"
-              className="mt-10"
-              rows={10}
-            />
-          ) : (
-            <></>
-          )}
 
           {analysis ? (
             <AnalysisTable analysis={analysis} className="mt-10" />
